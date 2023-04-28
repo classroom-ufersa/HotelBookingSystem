@@ -3,16 +3,7 @@
 #include <string.h>
 
 #include "hospede.h"
-
-#define MAX_QUARTOS 50
-
-struct quarto
-{
-    int numero;
-    char disponibilidade[81];
-    float preco;
-    char localizacao[81];
-};
+#include "../Quartos/quarto.h"
 
 struct hospede
 {
@@ -23,44 +14,71 @@ struct hospede
     struct hospede *prox;
 };
 
-void exibir_quartos(Quarto *q[])
-{
-    int i;
-    for (i = 0; i < MAX_QUARTOS; i++)
-    {
-        printf("N do quarto: %d\n", q[i]->numero);
-    }
+Hospede * inicializa_reserva(void){
+    return NULL;
 }
 
-/* Hospede *inicializa_reserva(void)
-{
-    return NULL;
-} */
-
-/* Hospede *cria_reserva(char nome[81], int estadia, float documento, Hospede *h)
-{
+Hospede * cria_reserva(char nome[81], int estadia, float documento, int numero, Hospede *h){
     Hospede *nova_reserva;
-    nova_reserva = (Hospede *)malloc(sizeof(Hospede));
+    nova_reserva = (Hospede*) malloc (sizeof(Hospede));
     strcpy(nova_reserva->nome, nome);
     strcpy(nova_reserva->quarto->disponibilidade, "Indisponivel");
     nova_reserva->estadia = estadia;
     nova_reserva->documento = documento;
+    nova_reserva->quarto->numero = numero;
     nova_reserva->prox = h;
     return nova_reserva;
 }
- */
-/* Quarto * imprime_quartos(Quarto *q){
-    Quarto * p;
-    for(p = q; p != NULL; p = p->prox){
-        printf("Numero do quarto: %d | Preco: %.2f | Localizacao: %s | Disponibilidade: %s\n", p->numero, p->preco, p->localizacao, p->disponibilidade);
+
+int destruir_reserva(Hospede *h){
+    return (h == NULL);
+}
+
+void imprime_reserva(Hospede *h){
+    Hospede *hAux;
+    for(hAux = h; hAux != NULL; hAux = hAux->prox){
+        printf("Nome: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero);
     }
 }
 
-void libera_quartos(Quarto* q){
-    Quarto* p = q;
-    while(p != NULL){
-        Quarto* t = p->prox;
-        free(p);
-        p = t;
+Hospede * busca_reserva(int numero, Hospede * h){
+    Hospede *hAux;
+    for(hAux = h; hAux != NULL; hAux = hAux->prox){
+        if(hAux->quarto->numero == numero){
+            return hAux;
+        }
     }
-} */
+    return NULL;
+}
+
+Hospede * exclui_reserva(Hospede * h, int numero){
+    Hospede * ant = NULL;
+    Hospede * hAux = h;
+
+    while(hAux->quarto->numero != numero){
+        if(hAux == NULL){
+            return h;
+        }
+        ant = hAux;
+        hAux = hAux->prox;
+    }
+
+    if(ant == NULL){
+        h = hAux->prox;
+    }
+    else{
+        ant->prox = hAux->prox;
+    }
+    free(hAux);
+    return h;
+}
+
+void libera_reserva(Hospede * h){
+    Hospede * hAux = h;
+    Hospede * hAuxLibera;
+    while(hAux != NULL){
+        hAuxLibera = hAux->prox;
+        free(hAux);
+        hAux = hAuxLibera;
+    }
+}
