@@ -2,59 +2,66 @@
 #include <stdlib.h>
 #include <locale.h>
 
-#include "Quartos/quarto.c"
 #include "Hospede/hospede.c"
 
 #define MAX_QUARTOS 50
 
 int main()
 {
-    int numero;
-    char disponibilidade[81], localizacao[81];
-    float preco;
+    int numero = 0, estadia = 0, vagas = MAX_QUARTOS, index = 0;
+    char disponibilidade[81], localizacao[81], nome[81];
+    float preco = 0, documento = 0;
 
     Quarto *quartos[MAX_QUARTOS];
-
     FILE *q;
     q = fopen("../dados/Quartos.txt", "r");
     if (q == NULL)
     {
         printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
         exit(1);
-    }    
-    fscanf(q, "%d\t%[^\t]\t%f\t%[^\n]", &numero, disponibilidade, &preco, localizacao);
-    printf("\n%d\n", numero);
-    printf("%s\n", disponibilidade);
-    printf("%f\n", preco);
-    printf("%s\n", localizacao);
+    }
 
-    strcpy(quartos[0]->disponibilidade, disponibilidade); 
-    strcpy(quartos[0]->localizacao, localizacao);
-    quartos[0]->numero = numero;
-    quartos[0]->preco = preco; 
-    
-    /* while (!(feof(q)))
+    while (!(feof(q)))
     { 
-        fscanf(q, "%d\t%[^\t]\t%f\t%[^\t]", &numero, disponibilidade, &preco, localizacao);
-        printf("%d %s %f %s", numero, disponibilidade, preco, localizacao);
-        //quartos[index] = captura_quartos(numero, disponibilidade, preco, localizacao);
+        fscanf(q, "%d\t%[^\t]\t%f\t%[^\n]", &numero, disponibilidade, &preco, localizacao);
+        //printf("%d %s %f %s", numero, disponibilidade, preco, localizacao);
+        quartos[index] = captura_quartos(numero, disponibilidade, preco, localizacao);
         //printf("N do quarto: %d\nDisponibilidade: %s\nPreco: %.0f\nLocalizacao: %s\n", quartos[index]->numero, quartos[index]->disponibilidade, quartos[index]->preco, quartos[index]->localizacao);
+        printf("%d", index);
         index++;
-    } */
+    }
     fclose(q);
 
     printf("Bem vindo ao servico de hotelaria de Lucas Emanuel e Murilo Fontes\n");
     int op;
     do
     {
+        inicializa_reserva();
         printf("\tOpcoes disponiveis no programa:\n\n\t1 - Realizar reserva\n\t2 - Exluir reserva\n\t3 - Listar Reservas\n\t4 - Buscar reserva\n\t5 - Editar reserva\n\t6 - Consultar quartos disponiveis\n\t7 - Consultar quantitativo de hospedes\n\t8 - Sair\n\n\tQual opcao deseja fazer: ");
         scanf("%d", &op);
         switch (op)
         {
         case 1:
+        if(vagas > 0){
             printf("\n\tRealizando reserva...\n");
-            criar_Quarto();
+            printf("Digite seu nome:\n");
+            scanf(" %[^\n]", nome);
+            printf("Digite seu numero de RG ou CPF:\n");
+            scanf("%f", &documento);
+            exibir_quartos(quartos);
+            printf("Qual o número do quarto em que deseja se hospedar?\n");
+            scanf("%d", &numero);
+            printf("Reservando o quarto %d.\nPor quantos dias deseja se hospedar?\n", numero);
+            scanf("%d", &estadia);
+            cria_reserva(nome, estadia, documento, numero, quartos[index]);
+            index++;
             break;
+        }
+        else{
+            printf("Desculpe! Nao ha vagas disponiveis para reserva no momento.\n");
+            break;
+        }
+            
         case 2:
             printf("\n\tExcluindo reserva...\n");
             break;
@@ -69,12 +76,7 @@ int main()
             break;
         case 6:
             printf("\n\tConsultando quartos disponiveis...\n");
-            printf("Quartos disponiveis:\n");
-            int h = 0;
-            for (h = 0; h < 5; h++)
-            {
-                printf("N do quarto: %d\nDisponibilidade: %s\nPreco: %.0f\nLocalizacao: %s\n", quartos[h]->numero, quartos[h]->disponibilidade, quartos[h]->preco, quartos[h]->localizacao);
-            }
+            exibir_quartos(quartos);
             
             break;
         case 7:

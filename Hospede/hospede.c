@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "hospede.h"
-#include "../Quartos/quarto.h"
+#include "../Quartos/quarto.c"
 
 struct hospede
 {
@@ -18,7 +18,8 @@ Hospede * inicializa_reserva(void){
     return NULL;
 }
 
-Hospede * cria_reserva(char nome[81], int estadia, float documento, int numero, Hospede *h){
+Hospede * cria_reserva(char nome[81], int estadia, float documento, int numero, Hospede **h){
+
     Hospede *nova_reserva;
     nova_reserva = (Hospede*) malloc (sizeof(Hospede));
     strcpy(nova_reserva->nome, nome);
@@ -26,7 +27,7 @@ Hospede * cria_reserva(char nome[81], int estadia, float documento, int numero, 
     nova_reserva->estadia = estadia;
     nova_reserva->documento = documento;
     nova_reserva->quarto->numero = numero;
-    nova_reserva->prox = h;
+    nova_reserva->prox = *h;
     return nova_reserva;
 }
 

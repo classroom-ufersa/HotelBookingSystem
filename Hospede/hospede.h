@@ -3,7 +3,7 @@ typedef struct hospede Hospede;
 
 Hospede * inicializa_reserva(void);
 
-Hospede * cria_reserva(char nome[81], int estadia, float documento, int numero, Hospede *h);
+Hospede * cria_reserva(char nome[81], int estadia, float documento, int numero, Hospede **h);
 
 int destruir_reserva(Hospede *h);
 
