@@ -12,6 +12,8 @@ int main()
     char disponibilidade[81], localizacao[81], nome[81];
     float preco = 0, documento = 0;
 
+    Hospede *lista_hospedes;
+
     Quarto *quartos[MAX_QUARTOS];
     FILE *q;
     q = fopen("../dados/Quartos.txt", "r");
@@ -21,52 +23,55 @@ int main()
         exit(1);
     }
 
+    // Ler os quartos do arquivo
     while (!(feof(q)))
-    { 
+    {
         fscanf(q, "%d\t%[^\t]\t%f\t%[^\n]", &numero, disponibilidade, &preco, localizacao);
-        //printf("%d %s %f %s", numero, disponibilidade, preco, localizacao);
+        // printf("%d %s %f %s", numero, disponibilidade, preco, localizacao);
         quartos[index] = captura_quartos(numero, disponibilidade, preco, localizacao);
-        //printf("N do quarto: %d\nDisponibilidade: %s\nPreco: %.0f\nLocalizacao: %s\n", quartos[index]->numero, quartos[index]->disponibilidade, quartos[index]->preco, quartos[index]->localizacao);
-        printf("%d", index);
+        // printf("N do quarto: %d\nDisponibilidade: %s\nPreco: %.0f\nLocalizacao: %s\n", quartos[index]->numero, quartos[index]->disponibilidade, quartos[index]->preco, quartos[index]->localizacao);
         index++;
     }
     fclose(q);
 
     printf("Bem vindo ao servico de hotelaria de Lucas Emanuel e Murilo Fontes\n");
     int op;
+    lista_hospedes = inicializa_reserva();
     do
     {
-        inicializa_reserva();
         printf("\tOpcoes disponiveis no programa:\n\n\t1 - Realizar reserva\n\t2 - Exluir reserva\n\t3 - Listar Reservas\n\t4 - Buscar reserva\n\t5 - Editar reserva\n\t6 - Consultar quartos disponiveis\n\t7 - Consultar quantitativo de hospedes\n\t8 - Sair\n\n\tQual opcao deseja fazer: ");
         scanf("%d", &op);
         switch (op)
         {
         case 1:
-        if(vagas > 0){
-            printf("\n\tRealizando reserva...\n");
-            printf("Digite seu nome:\n");
-            scanf(" %[^\n]", nome);
-            printf("Digite seu numero de RG ou CPF:\n");
-            scanf("%f", &documento);
-            exibir_quartos(quartos);
-            printf("Qual o número do quarto em que deseja se hospedar?\n");
-            scanf("%d", &numero);
-            printf("Reservando o quarto %d.\nPor quantos dias deseja se hospedar?\n", numero);
-            scanf("%d", &estadia);
-            cria_reserva(nome, estadia, documento, numero, quartos[index]);
-            index++;
-            break;
-        }
-        else{
-            printf("Desculpe! Nao ha vagas disponiveis para reserva no momento.\n");
-            break;
-        }
-            
+            if (vagas > 0)
+            {
+                printf("\n\tRealizando reserva...\n");
+                printf("Digite seu nome:\n");
+                scanf(" %[^\n]", nome);
+                printf("Digite seu numero de RG ou CPF:\n");
+                scanf("%f", &documento);
+                exibir_quartos(quartos);
+                printf("Qual o numero do quarto em que deseja se hospedar?\n");
+                scanf("%d", &numero);
+                strcpy(quartos[numero - 1]->disponibilidade, "INDISPONIVEL");
+                printf("Reservando o quarto %d.\nPor quantos dias deseja se hospedar?\n", numero);
+                scanf("%d", &estadia);
+                lista_hospedes = cria_reserva(lista_hospedes, quartos[numero - 1], nome, estadia, documento);
+                break;
+            }
+            else
+            {
+                printf("Desculpe! Nao ha vagas disponiveis para reserva no momento.\n");
+                break;
+            }
+
         case 2:
             printf("\n\tExcluindo reserva...\n");
             break;
         case 3:
             printf("\n\tListando reservas...\n");
+            imprime_reserva(lista_hospedes);
             break;
         case 4:
             printf("\n\tBuscando reservas...\n");
@@ -77,7 +82,7 @@ int main()
         case 6:
             printf("\n\tConsultando quartos disponiveis...\n");
             exibir_quartos(quartos);
-            
+
             break;
         case 7:
             printf("\n\tConsultando quantidade de hospedes...\n");

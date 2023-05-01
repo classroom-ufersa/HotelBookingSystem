@@ -28,15 +28,16 @@ Quarto *captura_quartos(int n, char disp[81], float preco, char local[81])
 void exibir_quartos(Quarto **q)
 {
   int i;
-  printf("----- LISTA DE QUARTOS DISPONIVEIS PARA RESERVA -----\n");
+  printf("\t----- LISTA DE QUARTOS DISPONIVEIS PARA RESERVA -----\n");
   for (i = 0; i < MAX_QUARTOS; i++)
   {
-    printf("N do quarto: %d\nDisponibilidade: %s\nPreco: %.0f\nLocalizacao: %s\n", q[i]->numero, q[i]->disponibilidade, q[i]->preco, q[i]->localizacao);
-    printf("---------------------\n");
+    printf("\tN do quarto: %d\n\tDisponibilidade: %s\n\tPreco: %.0f\n\tLocalizacao: %s\n", q[i]->numero, q[i]->disponibilidade, q[i]->preco, q[i]->localizacao);
+    printf("\t---------------------\n");
   }
 }
 
-void criar_Quarto()
+// Essa função foi usada para teste. Pode ser excluida
+/* void criar_Quarto()
 {
   int numero;
   char disponibilidade[81];
@@ -61,4 +62,4 @@ void criar_Quarto()
 
   fprintf(f, "%d\t%s\t%f\t%s\n", numero, disponibilidade, preco, localizacao);
   fclose(f);
-}
+} */
