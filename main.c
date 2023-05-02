@@ -58,6 +58,7 @@ int main()
                 printf("Reservando o quarto %d.\nPor quantos dias deseja se hospedar?\n", numero);
                 scanf("%d", &estadia);
                 lista_hospedes = cria_reserva(lista_hospedes, quartos[numero - 1], nome, estadia, documento);
+                printf("Reserva para o quarto %d criada com sucesso!\n", numero);
                 break;
             }
             else
@@ -68,6 +69,10 @@ int main()
 
         case 2:
             printf("\n\tExcluindo reserva...\n");
+            printf("Digite o numero do quarto para excluir sua reserva:\n");
+            scanf("%d", &numero);
+            lista_hospedes = exclui_reserva(lista_hospedes, numero);
+            printf("Reserva do quarto %d excluida com sucesso! Volte sempre.\n", numero);
             break;
         case 3:
             printf("\n\tListando reservas...\n");
