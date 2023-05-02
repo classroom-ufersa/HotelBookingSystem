@@ -56,16 +56,14 @@ int main()
                 printf("Qual o numero do quarto em que deseja se hospedar?\n");
                 scanf("%d", &numero);
 
-                // está faltando verificar se o quarto ja esta ocupado. teste abaixo
-
-                /* for(i = 0; i < MAX_QUARTOS; i++)
+                for(i = 0; i < MAX_QUARTOS; i++)
                 {
-                    if((quartos[i] == numero) && (strcmp(quartos[i]->disponibilidade, "OCUPADO") == 0))
+                    if((quartos[i]->numero == numero) && (strcmp(quartos[i]->disponibilidade, "OCUPADO") == 0))
                     {
                         printf("Desculpe, o quarto %d esta ocupado.\n", numero);
-                        break;
+                        break; // esse break nao esta parando, e permite que a pessoa continue reservando um quarto ocupado
                     }
-                } */
+                }
 
                 printf("Reserva para quantas pessoas?\n");
                 scanf("%d", &quantidade);
@@ -75,8 +73,6 @@ int main()
                 lista_hospedes = cria_reserva(lista_hospedes, quartos[numero - 1], nome, estadia, quantidade, documento);
                 printf("Reserva para o quarto %d criada com sucesso!\n", numero);
                 break;
-
-                // esta faltando uma funçao para atualizar o arquivo dizendo o numero do quarto que ficou ocupado
             }
             else
             {
