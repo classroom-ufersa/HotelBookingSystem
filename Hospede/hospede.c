@@ -19,6 +19,7 @@ Hospede *inicializa_reserva(void)
     return NULL;
 }
 
+// precisa corrigir. está inserindo ao contrario
 Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, float documento)
 {
 
@@ -45,6 +46,7 @@ void imprime_reserva(Hospede *h)
     {
         printf("Nome: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero);
     }
+    free(hAux);
 }
 
 Hospede *busca_reserva(int numero, Hospede *h)
@@ -54,9 +56,10 @@ Hospede *busca_reserva(int numero, Hospede *h)
     {
         if (hAux->quarto->numero == numero)
         {
-            return hAux;
+            printf("Nome: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero);
         }
     }
+    free(hAux);
     return NULL;
 }
 

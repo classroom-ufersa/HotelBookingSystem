@@ -80,6 +80,9 @@ int main()
             break;
         case 4:
             printf("\n\tBuscando reservas...\n");
+            printf("Digite o numero do quarto que deseja exibir as informacoes da reserva associada a ele:\n");
+            scanf("%d", &numero);
+            lista_hospedes = busca_reserva(numero, lista_hospedes);
             break;
         case 5:
             printf("\n\tEditando reserva...\n");
@@ -93,7 +96,8 @@ int main()
             printf("\n\tConsultando quantidade de hospedes...\n");
             break;
         case 8:
-            printf("\n\tSaindo...\n");
+            printf("\n\tObrigado por utilizar nosso programa!\n");
+            libera_reserva(lista_hospedes);
             break;
         }
     } while (op != 8);
