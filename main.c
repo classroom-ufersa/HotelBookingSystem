@@ -46,20 +46,20 @@ int main()
             if (vagas > 0)
             {
                 int i;
-                printf("\n\tRealizando reserva...\n");
-                printf("\tDigite o nome do responsavel: ");
-                scanf(" %[^\n]", nome);
-                printf("\tDigite seu numero de RG ou CPF: ");
-                scanf("%f", &documento);
                 exibir_quartos(quartos);
                 printf("\tQual o numero do quarto em que deseja se hospedar? ");
                 scanf("%d", &numero);
-                // muito feio
+                // como fazer melhor?
                 i = verifica_quarto(quartos, numero);
                 if (i == 1)
                 {
                     break;
                 }
+                printf("\n\tRealizando reserva...\n");
+                printf("\tDigite o nome do responsavel: ");
+                scanf(" %[^\n]", nome);
+                printf("\tDigite seu numero de RG ou CPF: ");
+                scanf("%f", &documento);
                 printf("\tReserva para quantas pessoas? ");
                 scanf("%d", &quantidade);
                 strcpy(quartos[numero - 1]->disponibilidade, "OCUPADO");
@@ -67,6 +67,8 @@ int main()
                 scanf("%d", &estadia);
                 lista_hospedes = cria_reserva(lista_hospedes, quartos[numero - 1], nome, estadia, quantidade, documento);
                 printf("\tReserva para o quarto %d criada com sucesso!\n", numero);
+                escreve_quarto(quartos);
+                escreve_lista(lista_hospedes);
                 break;
             }
             else
@@ -101,7 +103,9 @@ int main()
 
         case 5:
             printf("\n\tEditando reserva...\n");
-            escreve_quarto(quartos);
+            lista_hospedes = ler_lista(lista_hospedes, quartos);
+            lista_hospedes = ordena_reservas(lista_hospedes);
+            //escreve_lista(lista_hospedes);
             break;
 
         case 6:

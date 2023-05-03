@@ -46,7 +46,9 @@ void imprime_reserva(Hospede *h)
     Hospede *hAux;
     for (hAux = h; hAux != NULL; hAux = hAux->prox)
     {
-        printf("Nome do responsavel: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\nQuantidade de pessoas: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero, hAux->quantidade);
+        printf("Nome do responsavel: %s\nDias hospedados: %d\nDocumento: %f\nNumero do quarto: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero);
+
+        //printf("Nome do responsavel: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\nQuantidade de pessoas: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero, hAux->quantidade);
     }
     free(hAux);
 }
@@ -104,6 +106,62 @@ Hospede *exclui_reserva(Hospede *h, int numero)
     return h;
 }
 
+void escreve_lista(Hospede *h)
+{
+    Hospede *hAux;
+    FILE *arq;
+    arq = fopen("../dados/ListaReservas.txt", "w");
+    if (arq == NULL)
+    {
+        printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
+        exit(1);
+    }
+
+    for (hAux = h; hAux != NULL; hAux = hAux->prox)
+    {
+        fprintf(arq, "%s\n%d\n%.0f\n%d\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero);
+    }
+
+    fclose(arq);
+}
+
+Hospede * ler_lista(Hospede *h, Quarto **q)
+{
+    int index;
+    Quarto *quarto;
+    Hospede *hAux;
+    Hospede *head = h;
+    Hospede *tail = h;
+    FILE *arq;
+    arq = fopen("../dados/ListaReservas.txt", "r");
+    if (arq == NULL)
+    {
+        printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
+        exit(1);
+    }
+    
+    while(!(feof(arq)))
+    {
+        hAux = (Hospede*) malloc(sizeof(Hospede));
+        quarto = (Quarto*) malloc(sizeof(Quarto));
+        hAux->quarto = quarto;
+        fscanf(arq, "%s\n%d\n%f\n%d\n", hAux->nome, &hAux->estadia, &hAux->documento, &index);
+        hAux->quarto = q[index-1];
+        hAux->prox = NULL;
+
+        if(head == NULL){
+            head = hAux;
+            tail = hAux;
+        }
+        else{
+            tail->prox = hAux;
+            tail = hAux;
+        }
+    }
+    fclose(arq);
+    return head;
+}
+
 void libera_reserva(Hospede *h)
 {
     Hospede *hAux = h;
@@ -114,4 +172,19 @@ void libera_reserva(Hospede *h)
         free(hAux);
         hAux = hAuxLibera;
     }
+}
+
+Hospede * ordena_reservas(Hospede * h){
+    Hospede * hAux;
+    Hospede * temp;
+
+    for (hAux = h; hAux != NULL; hAux = hAux->prox)
+    {
+        if(strcmp(hAux->nome, hAux->prox->nome)>0){
+            temp = hAux;
+            hAux = hAux->prox;
+            hAux->prox = temp; 
+        }
+    }
+    return h;
 }
