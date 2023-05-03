@@ -28,7 +28,7 @@ Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, int qua
     Hospede * ant = NULL;
     Hospede * aux = h;
 
-    while(aux!=NULL && strcmp(aux->nome, aux->prox->nome) > 0){
+    while(aux!=NULL && strcmp(aux->nome, nome) < 0){
 		ant = aux;
 		aux = aux->prox;
 	}
