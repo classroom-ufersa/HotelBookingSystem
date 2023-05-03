@@ -20,20 +20,39 @@ Hospede *inicializa_reserva(void)
     return NULL;
 }
 
-// precisa corrigir. está inserindo ao contrario
+//Esta criando apenas um no na lista 
 Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, int quantidade, float documento)
 {
 
-    Hospede *nova_reserva;
+    Hospede * nova_reserva;
+    Hospede * ant = NULL;
+    Hospede * aux = h;
+
+    while(aux!=NULL && strcmp(aux->nome, aux->prox->nome) > 0){
+		ant = aux;
+		aux = aux->prox;
+	}
+
     nova_reserva = (Hospede *)malloc(sizeof(Hospede));
+    nova_reserva->quarto = (Quarto*) malloc(sizeof(Quarto));
+    
     strcpy(nova_reserva->nome, nome);
     nova_reserva->quarto = q;
+    printf("%s", nova_reserva->quarto->disponibilidade);
     strcpy(nova_reserva->quarto->disponibilidade, "OCUPADO");
     nova_reserva->estadia = estadia;
     nova_reserva->quantidade = quantidade;
     nova_reserva->documento = documento;
-    nova_reserva->prox = h;
-    return nova_reserva;
+
+    if(ant == NULL){
+        nova_reserva->prox = h;
+        h = nova_reserva;
+    }
+    else{
+        nova_reserva->prox = ant->prox;
+        ant->prox = nova_reserva;
+    }
+    return h;
 }
 
 int destruir_reserva(Hospede *h)
@@ -172,19 +191,4 @@ void libera_reserva(Hospede *h)
         free(hAux);
         hAux = hAuxLibera;
     }
-}
-
-Hospede * ordena_reservas(Hospede * h){
-    Hospede * hAux;
-    Hospede * temp;
-
-    for (hAux = h; hAux != NULL; hAux = hAux->prox)
-    {
-        if(strcmp(hAux->nome, hAux->prox->nome)>0){
-            temp = hAux;
-            hAux = hAux->prox;
-            hAux->prox = temp; 
-        }
-    }
-    return h;
 }

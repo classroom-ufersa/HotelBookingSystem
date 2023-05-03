@@ -104,8 +104,8 @@ int main()
         case 5:
             printf("\n\tEditando reserva...\n");
             lista_hospedes = ler_lista(lista_hospedes, quartos);
-            lista_hospedes = ordena_reservas(lista_hospedes);
-            //escreve_lista(lista_hospedes);
+            printf("errororoorroororor\n");
+            escreve_lista(lista_hospedes);
             break;
 
         case 6:
