@@ -13,6 +13,7 @@ int main()
     float preco = 0, documento = 0;
 
     Hospede *lista_hospedes;
+    Hospede *resultado_busca;
 
     Quarto *quartos[MAX_QUARTOS];
     FILE *q;
@@ -92,7 +93,13 @@ int main()
             printf("\n\tBuscando reservas...\n");
             printf("Digite o numero do quarto que deseja exibir as informacoes da reserva associada a ele:\n");
             scanf("%d", &numero);
-            lista_hospedes = busca_reserva(numero, lista_hospedes);
+            
+            resultado_busca = busca_reserva(numero, lista_hospedes);
+            if(resultado_busca == NULL){
+                printf("\tReserva nao encontrada.\n");
+                break;
+            }
+            printf("%s", resultado_busca->nome);
             break;
 
         case 5:

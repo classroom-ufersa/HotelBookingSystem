@@ -91,10 +91,11 @@ Hospede *busca_reserva(int numero, Hospede *h)
     {
         if (hAux->quarto->numero == numero)
         {
-            printf("Nome do responsavel: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\nQuantidade de pessoas: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero, hAux->quantidade);
+            return hAux;
+            //printf("Nome do responsavel: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\nQuantidade de pessoas: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero, hAux->quantidade);
         }
     }
-    free(hAux);
+    //free(hAux);
     return NULL;
 }
 
