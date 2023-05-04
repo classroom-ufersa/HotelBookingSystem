@@ -67,3 +67,26 @@ int verifica_quarto(Quarto **q, int numero)
   }
   return 0;
 }
+
+char *transforma_nome(char *nome)
+{
+  for (int i = 0; i < 81; i++)
+  {
+    nome[i] = toupper(nome[i]);
+  }
+  return nome;
+}
+
+void exibir_quartos_disponiveis(Quarto **q)
+{
+  int i;
+  printf("\t----- LISTA DE QUARTOS DISPONIVEIS PARA RESERVA -----\n");
+  for (i = 0; i < MAX_QUARTOS; i++)
+  {
+    if (strcmp(q[i]->disponibilidade, "DISPONIVEL") == 0)
+    {
+      printf("\tN do quarto: %d\n\tDisponibilidade: %s\n\tPreco: %.0f\n\tLocalizacao: %s\n", q[i]->numero, q[i]->disponibilidade, q[i]->preco, q[i]->localizacao);
+      printf("\t---------------------\n");
+    }
+  }
+}

@@ -43,7 +43,7 @@ int main()
 
     printf("Bem vindo ao servico de hotelaria de Lucas Emanuel e Murilo Fontes\n");
     int op;
-    // a lista esta sendo inciializada como nula?
+    //mesmo o arquivo estando vazio, ele entra no if. Porque?
     if (!(feof(arq)))
     {
         lista_hospedes = ler_lista(lista_hospedes, quartos);
@@ -62,7 +62,7 @@ int main()
         switch (op)
         {
         case 1:
-            exibir_quartos(quartos);
+            exibir_quartos_disponiveis(quartos);
             printf("\tQual o numero do quarto em que deseja se hospedar? ");
             scanf("%d", &numero);
             // como fazer melhor?
@@ -74,6 +74,7 @@ int main()
             printf("\n\tRealizando reserva...\n");
             printf("\tDigite o nome do responsavel: ");
             scanf(" %[^\n]", nome);
+            strcpy(nome, transforma_nome(nome));
             printf("\tDigite seu numero de RG ou CPF: ");
             scanf("%f", &documento);
             printf("\tReserva para quantas pessoas? ");
@@ -85,6 +86,7 @@ int main()
             printf("\tReserva para o quarto %d criada com sucesso!\n", numero);
             escreve_quarto(quartos);
             escreve_lista(lista_hospedes);
+            printf("%s", nome);
             break;
 
         case 2:
@@ -121,14 +123,12 @@ int main()
 
         case 5:
             printf("\n\tEditando reserva...\n");
-            // lista_hospedes = ler_lista(lista_hospedes, quartos);
-            // printf("errororoorroororor\n");
-            escreve_lista(lista_hospedes);
+            lista_hospedes = editar_reserva(lista_hospedes, quartos);
             break;
 
         case 6:
             printf("\n\tConsultando quartos disponiveis...\n");
-            exibir_quartos(quartos);
+            exibir_quartos_disponiveis(quartos);
             break;
 
         case 7:

@@ -8,4 +8,6 @@ void escreve_quarto(Quarto **quartos);
 
 int verifica_quarto(Quarto **q, int numero);
 
-// void criar_Quarto();
+char *transforma_nome(char *nome);
+
+void exibir_quartos_disponiveis(Quarto **q);
