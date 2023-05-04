@@ -118,3 +118,82 @@ Hospede *exclui_reserva(Hospede *h, int numero)
     return h;
 }
 ```
+
+## Listar reservas
+
+This function returns a list of all current reservations in the hotel, with relevant info such as the name of the person responsible for the reservation, the person's document, the amount of people in the room, the number of the room, and the length of their stay in the hotel.
+
+```c
+void imprime_reserva(Hospede *h)
+{
+    Hospede *hAux;
+    for (hAux = h; hAux != NULL; hAux = hAux->prox)
+    {
+        printf("Nome do responsavel: %s\nDias hospedados: %d\nDocumento: %f\nNumero do quarto: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero);
+
+        // printf("Nome do responsavel: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\nQuantidade de pessoas: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero, hAux->quantidade);
+    }
+    free(hAux);
+}
+```
+
+## Buscar reserva
+
+This function allows the user to search for a reservation if given the number of the room he wants to find. The function returns the information of that only room.
+
+```c
+Hospede *busca_reserva(int numero, Hospede *h)
+{
+    Hospede *hAux;
+    for (hAux = h; hAux != NULL; hAux = hAux->prox)
+    {
+        if (hAux->quarto->numero == numero)
+        {
+            return hAux;
+        }
+    }
+    return NULL;
+}
+```
+
+## Editar reserva:
+
+In progress.
+
+## Consultar quartos disponíveis:
+
+This function returns a list of all current available rooms for reservation.
+
+```c
+void exibir_quartos_disponiveis(Quarto **q)
+{
+  int i;
+  printf("\t----- LISTA DE QUARTOS DISPONIVEIS PARA RESERVA -----\n");
+  for (i = 0; i < MAX_QUARTOS; i++)
+  {
+    if (strcmp(q[i]->disponibilidade, "DISPONIVEL") == 0)
+    {
+      printf("\tN do quarto: %d\n\tDisponibilidade: %s\n\tPreco: %.0f\n\tLocalizacao: %s\n", q[i]->numero, q[i]->disponibilidade, q[i]->preco, q[i]->localizacao);
+      printf("\t---------------------\n");
+    }
+  }
+}
+```
+
+## Consultar quantidade de hospedes
+
+This function returns the amount of guests currently in the hotel.
+
+```c
+void consulta_quantitativo(Hospede *h)
+{
+    Hospede *hAux;
+    int quantidade = 0;
+    for (hAux = h; hAux != NULL; hAux = hAux->prox)
+    {
+        quantidade += hAux->quantidade;
+    }
+    printf("Ha %d pessoas atualmente hospedadas no hotel.\n", quantidade);
+    free(hAux);
+}
+```
