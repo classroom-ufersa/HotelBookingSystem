@@ -24,6 +24,14 @@ int main()
         exit(1);
     }
 
+    FILE *arq;
+    arq = fopen("../dados/ListaReservas.txt", "r");
+    if (arq == NULL)
+    {
+        printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
+        exit(1);
+    }
+
     // Ler os quartos do arquivo
     while (!(feof(q)))
     {
@@ -35,10 +43,18 @@ int main()
 
     printf("Bem vindo ao servico de hotelaria de Lucas Emanuel e Murilo Fontes\n");
     int op;
-    // encontrar o lugar certo pra esa fuçnao
-    lista_hospedes = ler_lista(lista_hospedes, quartos);
-    //lista_hospedes = inicializa_reserva();
-
+    // a lista esta sendo inciializada como nula?
+    if (!(feof(arq)))
+    {
+        lista_hospedes = ler_lista(lista_hospedes, quartos);
+        printf("arquivo lido com sucesso\n");
+    }
+    else
+    {
+        lista_hospedes = inicializa_reserva();
+        printf("arquivo vazio\n");
+    }
+    fclose(arq);
     do
     {
         printf("\tOpcoes disponiveis no programa:\n\n\t1 - Realizar reserva\n\t2 - Exluir reserva\n\t3 - Listar Reservas\n\t4 - Buscar reserva\n\t5 - Editar reserva\n\t6 - Consultar quartos disponiveis\n\t7 - Consultar quantitativo de hospedes\n\t8 - Sair\n\n\tQual opcao deseja fazer: ");
@@ -93,9 +109,10 @@ int main()
             printf("\n\tBuscando reservas...\n");
             printf("Digite o numero do quarto que deseja exibir as informacoes da reserva associada a ele:\n");
             scanf("%d", &numero);
-            
+
             resultado_busca = busca_reserva(numero, lista_hospedes);
-            if(resultado_busca == NULL){
+            if (resultado_busca == NULL)
+            {
                 printf("\tReserva nao encontrada.\n");
                 break;
             }
@@ -104,8 +121,8 @@ int main()
 
         case 5:
             printf("\n\tEditando reserva...\n");
-            //lista_hospedes = ler_lista(lista_hospedes, quartos);
-            //printf("errororoorroororor\n");
+            // lista_hospedes = ler_lista(lista_hospedes, quartos);
+            // printf("errororoorroororor\n");
             escreve_lista(lista_hospedes);
             break;
 

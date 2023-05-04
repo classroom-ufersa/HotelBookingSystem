@@ -20,22 +20,23 @@ Hospede *inicializa_reserva(void)
     return NULL;
 }
 
-//Esta criando apenas um no na lista 
+// Esta criando apenas um no na lista
 Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, int quantidade, float documento)
 {
 
-    Hospede * nova_reserva;
-    Hospede * ant = NULL;
-    Hospede * aux = h;
+    Hospede *nova_reserva;
+    Hospede *ant = NULL;
+    Hospede *aux = h;
 
-    while(aux!=NULL && strcmp(aux->nome, nome) < 0){
-		ant = aux;
-		aux = aux->prox;
-	}
+    while (aux != NULL && strcmp(aux->nome, nome) < 0)
+    {
+        ant = aux;
+        aux = aux->prox;
+    }
 
     nova_reserva = (Hospede *)malloc(sizeof(Hospede));
-    nova_reserva->quarto = (Quarto*) malloc(sizeof(Quarto));
-    
+    nova_reserva->quarto = (Quarto *)malloc(sizeof(Quarto));
+
     strcpy(nova_reserva->nome, nome);
     nova_reserva->quarto = q;
     printf("%s", nova_reserva->quarto->disponibilidade);
@@ -44,11 +45,13 @@ Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, int qua
     nova_reserva->quantidade = quantidade;
     nova_reserva->documento = documento;
 
-    if(ant == NULL){
+    if (ant == NULL)
+    {
         nova_reserva->prox = h;
         h = nova_reserva;
     }
-    else{
+    else
+    {
         nova_reserva->prox = ant->prox;
         ant->prox = nova_reserva;
     }
@@ -67,7 +70,7 @@ void imprime_reserva(Hospede *h)
     {
         printf("Nome do responsavel: %s\nDias hospedados: %d\nDocumento: %f\nNumero do quarto: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero);
 
-        //printf("Nome do responsavel: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\nQuantidade de pessoas: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero, hAux->quantidade);
+        // printf("Nome do responsavel: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\nQuantidade de pessoas: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero, hAux->quantidade);
     }
     free(hAux);
 }
@@ -92,10 +95,10 @@ Hospede *busca_reserva(int numero, Hospede *h)
         if (hAux->quarto->numero == numero)
         {
             return hAux;
-            //printf("Nome do responsavel: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\nQuantidade de pessoas: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero, hAux->quantidade);
+            // printf("Nome do responsavel: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\nQuantidade de pessoas: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero, hAux->quantidade);
         }
     }
-    //free(hAux);
+    // free(hAux);
     return NULL;
 }
 
@@ -145,7 +148,7 @@ void escreve_lista(Hospede *h)
     fclose(arq);
 }
 
-Hospede * ler_lista(Hospede *h, Quarto **q)
+Hospede *ler_lista(Hospede *h, Quarto **q)
 {
     int index;
     Quarto *quarto;
@@ -159,21 +162,22 @@ Hospede * ler_lista(Hospede *h, Quarto **q)
         printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
         exit(1);
     }
-    
-    while(!(feof(arq)))
+    while (!(feof(arq)))
     {
-        hAux = (Hospede*) malloc(sizeof(Hospede));
-        quarto = (Quarto*) malloc(sizeof(Quarto));
+        hAux = (Hospede *)malloc(sizeof(Hospede));
+        quarto = (Quarto *)malloc(sizeof(Quarto));
         hAux->quarto = quarto;
         fscanf(arq, "%s\n%d\n%f\n%d\n", hAux->nome, &hAux->estadia, &hAux->documento, &index);
-        hAux->quarto = q[index-1];
+        hAux->quarto = q[index - 1];
         hAux->prox = NULL;
 
-        if(head == NULL){
+        if (head == NULL)
+        {
             head = hAux;
             tail = hAux;
         }
-        else{
+        else
+        {
             tail->prox = hAux;
             tail = hAux;
         }
