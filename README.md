@@ -10,6 +10,13 @@ A linked list is then created with the booking information, which is written int
 - [How to run the project](#how-to-run-the-project)
 - [Main menu](#main-menu)
 - [Realizar reserva](#main-menu)
+- [Excluir reserva](#excluir-reserva)
+- [Listar reservas](#listar-reservas)
+- [Buscar reserva](#buscar-reserva)
+- [Editar reserva](#editar-reserva)
+- [Consultar quartos disponíveis](#consultar-quartos-disponíveis)
+- [Consultar quantidade de hospedes](#consultar-quantidade-de-hospedes)
+- [Sair](#sair)
 
 ## List of files
 
@@ -197,3 +204,7 @@ void consulta_quantitativo(Hospede *h)
     free(hAux);
 }
 ```
+
+## Sair
+
+This option leaves the program.
