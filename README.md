@@ -4,6 +4,13 @@ This hotel booking system allows for the creation of guests reservations by aski
 
 A linked list is then created with the booking information, which is written into a text file for future consultations.
 
+## Topics
+
+- [List of files](#list-of-files)
+- [How to run the project](#how-to-run-the-project)
+- [Main menu](#main-menu)
+- [Realizar reserva](#main-menu)
+
 ## List of files
 
 - dados
@@ -75,6 +82,39 @@ Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, int qua
         nova_reserva->prox = ant->prox;
         ant->prox = nova_reserva;
     }
+    return h;
+}
+```
+
+## Excluir reserva
+
+This function deletes a node from the linked list based on the user's input of which reservation he wants to remove. The removal is based on the number of the room.
+
+```c
+Hospede *exclui_reserva(Hospede *h, int numero)
+{
+    Hospede *ant = NULL;
+    Hospede *hAux = h;
+
+    while (hAux->quarto->numero != numero)
+    {
+        if (hAux == NULL)
+        {
+            return h;
+        }
+        ant = hAux;
+        hAux = hAux->prox;
+    }
+
+    if (ant == NULL)
+    {
+        h = hAux->prox;
+    }
+    else
+    {
+        ant->prox = hAux->prox;
+    }
+    free(hAux);
     return h;
 }
 ```
