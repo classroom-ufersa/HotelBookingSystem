@@ -8,11 +8,12 @@
 
 int main()
 {
-    int numero = 0, estadia = 0, quantidade = 0, vagas = MAX_QUARTOS, index = 0;
+    int numero = 0, estadia = 0, quantidade = 0, index = 0, i;
     char disponibilidade[81], localizacao[81], nome[81];
     float preco = 0, documento = 0;
 
     Hospede *lista_hospedes;
+    Hospede *resultado_busca;
 
     Quarto *quartos[MAX_QUARTOS];
     FILE *q;
@@ -23,20 +24,37 @@ int main()
         exit(1);
     }
 
+    FILE *arq;
+    arq = fopen("../dados/ListaReservas.txt", "r");
+    if (arq == NULL)
+    {
+        printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
+        exit(1);
+    }
+
     // Ler os quartos do arquivo
     while (!(feof(q)))
     {
         fscanf(q, "%d\t%[^\t]\t%f\t%[^\n]", &numero, disponibilidade, &preco, localizacao);
-        // printf("%d %s %f %s", numero, disponibilidade, preco, localizacao);
         quartos[index] = captura_quartos(numero, disponibilidade, preco, localizacao);
-        // printf("N do quarto: %d\nDisponibilidade: %s\nPreco: %.0f\nLocalizacao: %s\n", quartos[index]->numero, quartos[index]->disponibilidade, quartos[index]->preco, quartos[index]->localizacao);
         index++;
     }
     fclose(q);
 
     printf("Bem vindo ao servico de hotelaria de Lucas Emanuel e Murilo Fontes\n");
     int op;
-    lista_hospedes = inicializa_reserva();
+    // a lista esta sendo inciializada como nula?
+    if (!(feof(arq)))
+    {
+        lista_hospedes = ler_lista(lista_hospedes, quartos);
+        printf("arquivo lido com sucesso\n");
+    }
+    else
+    {
+        lista_hospedes = inicializa_reserva();
+        printf("arquivo vazio\n");
+    }
+    fclose(arq);
     do
     {
         printf("\tOpcoes disponiveis no programa:\n\n\t1 - Realizar reserva\n\t2 - Exluir reserva\n\t3 - Listar Reservas\n\t4 - Buscar reserva\n\t5 - Editar reserva\n\t6 - Consultar quartos disponiveis\n\t7 - Consultar quantitativo de hospedes\n\t8 - Sair\n\n\tQual opcao deseja fazer: ");
@@ -44,41 +62,30 @@ int main()
         switch (op)
         {
         case 1:
-            if (vagas > 0)
+            exibir_quartos(quartos);
+            printf("\tQual o numero do quarto em que deseja se hospedar? ");
+            scanf("%d", &numero);
+            // como fazer melhor?
+            i = verifica_quarto(quartos, numero);
+            if (i == 1)
             {
-                int i;
-                printf("\n\tRealizando reserva...\n");
-                printf("Digite o nome do responsavel:\n");
-                scanf(" %[^\n]", nome);
-                printf("Digite seu numero de RG ou CPF:\n");
-                scanf("%f", &documento);
-                exibir_quartos(quartos);
-                printf("Qual o numero do quarto em que deseja se hospedar?\n");
-                scanf("%d", &numero);
-
-                for(i = 0; i < MAX_QUARTOS; i++)
-                {
-                    if((quartos[i]->numero == numero) && (strcmp(quartos[i]->disponibilidade, "OCUPADO") == 0))
-                    {
-                        printf("Desculpe, o quarto %d esta ocupado.\n", numero);
-                        break; // esse break nao esta parando, e permite que a pessoa continue reservando um quarto ocupado
-                    }
-                }
-
-                printf("Reserva para quantas pessoas?\n");
-                scanf("%d", &quantidade);
-                strcpy(quartos[numero - 1]->disponibilidade, "INDISPONIVEL");
-                printf("Reservando o quarto %d.\nPor quantos dias deseja se hospedar?\n", numero);
-                scanf("%d", &estadia);
-                lista_hospedes = cria_reserva(lista_hospedes, quartos[numero - 1], nome, estadia, quantidade, documento);
-                printf("Reserva para o quarto %d criada com sucesso!\n", numero);
                 break;
             }
-            else
-            {
-                printf("Desculpe! Nao ha vagas disponiveis para reserva no momento.\n");
-                break;
-            }
+            printf("\n\tRealizando reserva...\n");
+            printf("\tDigite o nome do responsavel: ");
+            scanf(" %[^\n]", nome);
+            printf("\tDigite seu numero de RG ou CPF: ");
+            scanf("%f", &documento);
+            printf("\tReserva para quantas pessoas? ");
+            scanf("%d", &quantidade);
+            strcpy(quartos[numero - 1]->disponibilidade, "OCUPADO");
+            printf("\tReservando o quarto %d.\n\tPor quantos dias deseja se hospedar? ", numero);
+            scanf("%d", &estadia);
+            lista_hospedes = cria_reserva(lista_hospedes, quartos[numero - 1], nome, estadia, quantidade, documento);
+            printf("\tReserva para o quarto %d criada com sucesso!\n", numero);
+            escreve_quarto(quartos);
+            escreve_lista(lista_hospedes);
+            break;
 
         case 2:
             printf("\n\tExcluindo reserva...\n");
@@ -89,25 +96,41 @@ int main()
             break;
 
         case 3:
+            if (lista_hospedes == NULL)
+            {
+                printf("\t\nNao ha reservas cadastradas!\n\n");
+                break;
+            }
             printf("\n\tListando reservas...\n");
             imprime_reserva(lista_hospedes);
             break;
+
         case 4:
             printf("\n\tBuscando reservas...\n");
             printf("Digite o numero do quarto que deseja exibir as informacoes da reserva associada a ele:\n");
             scanf("%d", &numero);
-            lista_hospedes = busca_reserva(numero, lista_hospedes);
+
+            resultado_busca = busca_reserva(numero, lista_hospedes);
+            if (resultado_busca == NULL)
+            {
+                printf("\tReserva nao encontrada.\n");
+                break;
+            }
+            printf("%s", resultado_busca->nome);
             break;
 
         case 5:
             printf("\n\tEditando reserva...\n");
+            // lista_hospedes = ler_lista(lista_hospedes, quartos);
+            // printf("errororoorroororor\n");
+            escreve_lista(lista_hospedes);
             break;
 
         case 6:
             printf("\n\tConsultando quartos disponiveis...\n");
             exibir_quartos(quartos);
-
             break;
+
         case 7:
             printf("\n\tConsultando quantidade de hospedes...\n");
             consulta_quantitativo(lista_hospedes);

@@ -18,3 +18,7 @@ Hospede *busca_reserva(int numero, Hospede *h);
 Hospede *exclui_reserva(Hospede *h, int numero);
 
 void libera_reserva(Hospede *h);
+
+void escreve_lista(Hospede *h);
+
+Hospede * ler_lista(Hospede *h, Quarto **q);

@@ -14,7 +14,6 @@ struct quarto
   char localizacao[81];
 };
 
-/* Função merda do krai */
 Quarto *captura_quartos(int n, char disp[81], float preco, char local[81])
 {
   Quarto *temp = (Quarto *)malloc(sizeof(Quarto));
@@ -23,6 +22,25 @@ Quarto *captura_quartos(int n, char disp[81], float preco, char local[81])
   temp->preco = preco;
   strcpy(temp->localizacao, local);
   return temp;
+}
+
+void escreve_quarto(Quarto **quartos)
+{
+  int index = 0;
+  FILE *file_quartos;
+  file_quartos = fopen("../dados/Quartos.txt", "w");
+  if (file_quartos == NULL)
+  {
+    printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
+    exit(1);
+  }
+
+  for (index = 0; index < MAX_QUARTOS; index++)
+  {
+    fprintf(file_quartos, "%d\t%s\t%f\t%s\n", quartos[index]->numero, quartos[index]->disponibilidade, quartos[index]->preco, quartos[index]->localizacao);
+  }
+
+  fclose(file_quartos);
 }
 
 void exibir_quartos(Quarto **q)
@@ -36,30 +54,16 @@ void exibir_quartos(Quarto **q)
   }
 }
 
-// Essa função foi usada para teste. Pode ser excluida
-/* void criar_Quarto()
+int verifica_quarto(Quarto **q, int numero)
 {
-  int numero;
-  char disponibilidade[81];
-  float preco;
-  char localizacao[81];
-
-  FILE *f = fopen("../dados/Quartos.txt", "a");
-  if (f == NULL)
+  int i;
+  for (i = 0; i < MAX_QUARTOS; i++)
   {
-    printf("Nao foi possivel abrir o arquivo!\n");
-    exit(1);
+    if ((q[i]->numero == numero) && (strcmp(q[i]->disponibilidade, "OCUPADO") == 0))
+    {
+      printf("\n\tDesculpe, o quarto %d esta ocupado.\n\n", numero);
+      return 1;
+    }
   }
-
-  printf("Digite o numero do quarto: ");
-  scanf("%d", &numero);
-  printf("Digite a disponibilidade do quarto: ");
-  scanf(" %[^\n]s", disponibilidade);
-  printf("Digite o preco do quarto: ");
-  scanf("%f", &preco);
-  printf("Digite a localizacao do quarto: ");
-  scanf(" %[^\n]s", localizacao);
-
-  fprintf(f, "%d\t%s\t%f\t%s\n", numero, disponibilidade, preco, localizacao);
-  fclose(f);
-} */
+  return 0;
+}
