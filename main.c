@@ -46,6 +46,7 @@ int main()
     // a lista esta sendo inciializada como nula?
     if (!(feof(arq)))
     {
+        lista_hospedes = inicializa_reserva();
         lista_hospedes = ler_lista(lista_hospedes, quartos);
         printf("arquivo lido com sucesso\n");
     }
