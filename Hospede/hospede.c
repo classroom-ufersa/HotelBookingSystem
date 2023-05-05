@@ -39,7 +39,6 @@ Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, int qua
 
     strcpy(nova_reserva->nome, nome);
     nova_reserva->quarto = q;
-    printf("%s", nova_reserva->quarto->disponibilidade);
     strcpy(nova_reserva->quarto->disponibilidade, "OCUPADO");
     nova_reserva->estadia = estadia;
     nova_reserva->quantidade = quantidade;
@@ -83,7 +82,7 @@ void consulta_quantitativo(Hospede *h)
     {
         quantidade += hAux->quantidade;
     }
-    printf("Ha %d pessoas atualmente hospedadas no hotel.\n", quantidade);
+    printf("\tHa %d pessoas atualmente hospedadas no hotel.\n", quantidade);
     free(hAux);
 }
 
@@ -197,11 +196,14 @@ void libera_reserva(Hospede *h)
     }
 }
 
-Hospede * editar_reserva(Hospede * h, Quarto **q){
-    Hospede * aux = (Hospede *) malloc(sizeof(Hospede));
+Hospede *editar_reserva(Hospede *h, Quarto **q)
+{
+    Hospede *aux = (Hospede *)malloc(sizeof(Hospede));
     char nome[81];
     int op, estadia, numero, quantidade;
     float documento;
+
+    exibir_quartos_ocupados(q);
 
     printf("\n\tDigite o numero do quarto do responsavel que deseja fazer a edicao: ");
     scanf("%d", &numero);
@@ -222,7 +224,10 @@ Hospede * editar_reserva(Hospede * h, Quarto **q){
         h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
         escreve_lista(h);
         return h;
-    } else if(op == 2){
+    }
+
+    else if (op == 2)
+    {
         aux = busca_reserva(numero, h);
         strcpy(nome, aux->nome);
         documento = aux->documento;
@@ -234,5 +239,18 @@ Hospede * editar_reserva(Hospede * h, Quarto **q){
         escreve_lista(h);
         return h;
     }
-}
 
+    else if (op == 3)
+    {
+        aux = busca_reserva(numero, h);
+        strcpy(nome, aux->nome);
+        estadia = aux->estadia;
+        quantidade = aux->quantidade;
+        h = exclui_reserva(h, numero);
+        printf("\n\tTudo certo, agora digite o novo numero do documento: ");
+        scanf("%d", &documento);
+        h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
+        escreve_lista(h);
+        return h;
+    }
+}

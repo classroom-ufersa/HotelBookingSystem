@@ -86,7 +86,6 @@ int main()
             printf("\tReserva para o quarto %d criada com sucesso!\n", numero);
             escreve_quarto(quartos);
             escreve_lista(lista_hospedes);
-            printf("%s", nome);
             break;
 
         case 2:
@@ -108,6 +107,11 @@ int main()
             break;
 
         case 4:
+            if (lista_hospedes == NULL)
+            {
+                printf("\t\nNao ha reservas cadastradas!\n\n");
+                break;
+            }
             printf("\n\tBuscando reservas...\n");
             printf("Digite o numero do quarto que deseja exibir as informacoes da reserva associada a ele:\n");
             scanf("%d", &numero);

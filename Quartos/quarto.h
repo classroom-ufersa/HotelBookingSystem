@@ -11,3 +11,5 @@ int verifica_quarto(Quarto **q, int numero);
 char *transforma_nome(char *nome);
 
 void exibir_quartos_disponiveis(Quarto **q);
+
+void exibir_quartos_ocupados(Quarto **q);

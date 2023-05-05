@@ -54,7 +54,7 @@ To run this project, get inside the `out`directory and write the `./main` comman
 
 This function creates a new reservation. This creates a new node in the linked list, sorted by alphabetical order.
 
-c
+```c
 Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, int quantidade, float documento)
 {
 
@@ -91,13 +91,13 @@ Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, int qua
     }
     return h;
 }
-
+```
 
 ## Excluir reserva
 
 This function deletes a node from the linked list based on the user's input of which reservation he wants to remove. The removal is based on the number of the room.
 
-c
+```c
 Hospede *exclui_reserva(Hospede *h, int numero)
 {
     Hospede *ant = NULL;
@@ -124,13 +124,13 @@ Hospede *exclui_reserva(Hospede *h, int numero)
     free(hAux);
     return h;
 }
-
+```
 
 ## Listar reservas
 
 This function returns a list of all current reservations in the hotel, with relevant info such as the name of the person responsible for the reservation, the person's document, the amount of people in the room, the number of the room, and the length of their stay in the hotel.
 
-c
+```c
 void imprime_reserva(Hospede *h)
 {
     Hospede *hAux;
@@ -142,13 +142,13 @@ void imprime_reserva(Hospede *h)
     }
     free(hAux);
 }
-
+```
 
 ## Buscar reserva
 
 This function allows the user to search for a reservation if given the number of the room he wants to find. The function returns the information of that only room.
 
-c
+```c
 Hospede *busca_reserva(int numero, Hospede *h)
 {
     Hospede *hAux;
@@ -161,17 +161,78 @@ Hospede *busca_reserva(int numero, Hospede *h)
     }
     return NULL;
 }
-
+```
 
 ## Editar reserva:
 
-In progress.
+This function allows changes to the attributes of the list.
+
+```c
+Hospede *editar_reserva(Hospede *h, Quarto **q)
+{
+    Hospede *aux = (Hospede *)malloc(sizeof(Hospede));
+    char nome[81];
+    int op, estadia, numero, quantidade;
+    float documento;
+
+    exibir_quartos_ocupados(q);
+
+    printf("\n\tDigite o numero do quarto do responsavel que deseja fazer a edicao: ");
+    scanf("%d", &numero);
+
+    printf("\n\tO que deseja editar?\n\t\t1 - Nome\n\t\t2 - Duracao da estadia\n\t\t3 - Documento\n\t\t4 - Quarto ");
+    scanf("%d", &op);
+
+    if (op == 1)
+    {
+        aux = busca_reserva(numero, h);
+        estadia = aux->estadia;
+        documento = aux->documento;
+        quantidade = aux->quantidade;
+        h = exclui_reserva(h, numero);
+        printf("\n\tTudo certo, agora digite o novo nome do responsavel: ");
+        scanf(" %[^\n]", nome);
+        strcpy(nome, transforma_nome(nome));
+        h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
+        escreve_lista(h);
+        return h;
+    }
+
+    else if (op == 2)
+    {
+        aux = busca_reserva(numero, h);
+        strcpy(nome, aux->nome);
+        documento = aux->documento;
+        quantidade = aux->quantidade;
+        h = exclui_reserva(h, numero);
+        printf("\n\tTudo certo, agora digite a nova duracao da estadia: ");
+        scanf("%d", &estadia);
+        h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
+        escreve_lista(h);
+        return h;
+    }
+
+    else if (op == 3)
+    {
+        aux = busca_reserva(numero, h);
+        strcpy(nome, aux->nome);
+        estadia = aux->estadia;
+        quantidade = aux->quantidade;
+        h = exclui_reserva(h, numero);
+        printf("\n\tTudo certo, agora digite o novo numero do documento: ");
+        scanf("%d", &documento);
+        h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
+        escreve_lista(h);
+        return h;
+    }
+}
+```
 
 ## Consultar quartos disponíveis:
 
 This function returns a list of all current available rooms for reservation.
 
-c
+```c
 void exibir_quartos_disponiveis(Quarto **q)
 {
   int i;
@@ -185,13 +246,13 @@ void exibir_quartos_disponiveis(Quarto **q)
     }
   }
 }
-
+```
 
 ## Consultar quantidade de hospedes
 
 This function returns the amount of guests currently in the hotel.
 
-c
+```c
 void consulta_quantitativo(Hospede *h)
 {
     Hospede *hAux;
@@ -203,7 +264,7 @@ void consulta_quantitativo(Hospede *h)
     printf("Ha %d pessoas atualmente hospedadas no hotel.\n", quantidade);
     free(hAux);
 }
-
+```
 
 ## Sair
 

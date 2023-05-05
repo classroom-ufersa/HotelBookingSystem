@@ -32,6 +32,7 @@ void escreve_quarto(Quarto **quartos)
   if (file_quartos == NULL)
   {
     printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
+    fclose(file_quartos);
     exit(1);
   }
 
@@ -56,6 +57,12 @@ void exibir_quartos(Quarto **q)
 
 int verifica_quarto(Quarto **q, int numero)
 {
+  if (numero > MAX_QUARTOS)
+  {
+    printf("\n\tO quarto selecionado nao existe\n");
+    return 1;
+  }
+
   int i;
   for (i = 0; i < MAX_QUARTOS; i++)
   {
@@ -84,6 +91,20 @@ void exibir_quartos_disponiveis(Quarto **q)
   for (i = 0; i < MAX_QUARTOS; i++)
   {
     if (strcmp(q[i]->disponibilidade, "DISPONIVEL") == 0)
+    {
+      printf("\tN do quarto: %d\n\tDisponibilidade: %s\n\tPreco: %.0f\n\tLocalizacao: %s\n", q[i]->numero, q[i]->disponibilidade, q[i]->preco, q[i]->localizacao);
+      printf("\t---------------------\n");
+    }
+  }
+}
+
+void exibir_quartos_ocupados(Quarto **q)
+{
+  int i;
+  printf("\t----- LISTA DE QUARTOS DISPONIVEIS PARA RESERVA -----\n");
+  for (i = 0; i < MAX_QUARTOS; i++)
+  {
+    if (strcmp(q[i]->disponibilidade, "DISPONIVEL") != 0)
     {
       printf("\tN do quarto: %d\n\tDisponibilidade: %s\n\tPreco: %.0f\n\tLocalizacao: %s\n", q[i]->numero, q[i]->disponibilidade, q[i]->preco, q[i]->localizacao);
       printf("\t---------------------\n");
