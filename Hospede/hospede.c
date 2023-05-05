@@ -67,9 +67,7 @@ void imprime_reserva(Hospede *h)
     Hospede *hAux;
     for (hAux = h; hAux != NULL; hAux = hAux->prox)
     {
-        printf("Nome do responsavel: %s\nDias hospedados: %d\nDocumento: %f\nNumero do quarto: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero);
-
-        // printf("Nome do responsavel: %s | Estadia: %d dias | Documento: %.0f\nQuarto: %d\nQuantidade de pessoas: %d\n\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero, hAux->quantidade);
+        printf("Nome do responsavel: %s\nTotal de pessoas no quarto: %d\nDias hospedados: %d\nDocumento: %.0f\nNumero do quarto: %d\n\n", hAux->nome, hAux->quantidade, hAux->estadia, hAux->documento, hAux->quarto->numero);
     }
     free(hAux);
 }
@@ -140,7 +138,7 @@ void escreve_lista(Hospede *h)
 
     for (hAux = h; hAux != NULL; hAux = hAux->prox)
     {
-        fprintf(arq, "%s\n%d\n%.0f\n%d\n", hAux->nome, hAux->estadia, hAux->documento, hAux->quarto->numero);
+        fprintf(arq, "%s\n%d\n%d\n%.0f\n%d\n", hAux->nome, hAux->quantidade, hAux->estadia, hAux->documento, hAux->quarto->numero);
     }
 
     fclose(arq);
@@ -160,12 +158,13 @@ Hospede *ler_lista(Hospede *h, Quarto **q)
         printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
         exit(1);
     }
+    
     while (!(feof(arq)))
     {
         hAux = (Hospede *)malloc(sizeof(Hospede));
         quarto = (Quarto *)malloc(sizeof(Quarto));
         hAux->quarto = quarto;
-        fscanf(arq, "%s\n%d\n%f\n%d\n", hAux->nome, &hAux->estadia, &hAux->documento, &index);
+        fscanf(arq, "%s\n%d\n%d\n%f\n%d\n", hAux->nome, &hAux->quantidade, &hAux->estadia, &hAux->documento, &index);
         hAux->quarto = q[index - 1];
         hAux->prox = NULL;
 
@@ -180,6 +179,7 @@ Hospede *ler_lista(Hospede *h, Quarto **q)
             tail = hAux;
         }
     }
+    
     fclose(arq);
     return head;
 }

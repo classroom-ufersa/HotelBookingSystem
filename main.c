@@ -24,14 +24,6 @@ int main()
         exit(1);
     }
 
-    FILE *arq;
-    arq = fopen("../dados/ListaReservas.txt", "r");
-    if (arq == NULL)
-    {
-        printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
-        exit(1);
-    }
-
     // Ler os quartos do arquivo
     while (!(feof(q)))
     {
@@ -40,25 +32,31 @@ int main()
         index++;
     }
     fclose(q);
+    
+    FILE *arq;
+    arq = fopen("../dados/ListaReservas.txt", "r");
+    if (arq == NULL)
+    {
+        printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
+        exit(1);
+    }
+
+    if(fgetc(arq) != 'n'){
+        lista_hospedes = ler_lista(lista_hospedes, quartos);
+    }else{
+        lista_hospedes = inicializa_reserva();
+    }
+    fclose(arq);
 
     printf("Bem vindo ao servico de hotelaria de Lucas Emanuel e Murilo Fontes\n");
     int op;
-    //mesmo o arquivo estando vazio, ele entra no if. Porque?
-    if (!(feof(arq)))
-    {
-        lista_hospedes = ler_lista(lista_hospedes, quartos);
-        printf("arquivo lido com sucesso\n");
-    }
-    else
-    {
-        lista_hospedes = inicializa_reserva();
-        printf("arquivo vazio\n");
-    }
-    fclose(arq);
+    
+
     do
     {
         printf("\tOpcoes disponiveis no programa:\n\n\t1 - Realizar reserva\n\t2 - Exluir reserva\n\t3 - Listar Reservas\n\t4 - Buscar reserva\n\t5 - Editar reserva\n\t6 - Consultar quartos disponiveis\n\t7 - Consultar quantitativo de hospedes\n\t8 - Sair\n\n\tQual opcao deseja fazer: ");
         scanf("%d", &op);
+        
         switch (op)
         {
         case 1:
@@ -89,6 +87,11 @@ int main()
             break;
 
         case 2:
+            if (lista_hospedes == NULL)
+            {
+                printf("\t\nNao ha reservas cadastradas!\n\n");
+                break;
+            }
             printf("\n\tExcluindo reserva...\n");
             printf("Digite o numero do quarto para excluir sua reserva:\n");
             scanf("%d", &numero);
@@ -122,10 +125,15 @@ int main()
                 printf("\tReserva nao encontrada.\n");
                 break;
             }
-            printf("%s", resultado_busca->nome);
+            printf("Nome do responsavel: %s\nTotal de pessoas no quarto: %d\nDias hospedados: %d\nDocumento: %.0f\nNumero do quarto: %d\n\n", resultado_busca->nome, resultado_busca->quantidade, resultado_busca->estadia, resultado_busca->documento, resultado_busca->quarto->numero);
             break;
 
         case 5:
+            if (lista_hospedes == NULL)
+            {
+                printf("\t\nNao ha reservas cadastradas!\n\n");
+                break;
+            }
             printf("\n\tEditando reserva...\n");
             lista_hospedes = editar_reserva(lista_hospedes, quartos);
             break;
@@ -143,6 +151,10 @@ int main()
         case 8:
             printf("\n\tObrigado por utilizar nosso programa!\n");
             libera_reserva(lista_hospedes);
+            break;
+
+        default:
+            printf("\n\tOpcao invalida!");
             break;
         }
     } while (op != 8);
