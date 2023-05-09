@@ -112,3 +112,33 @@ void exibir_quartos_ocupados(Quarto **q)
     }
   }
 }
+
+int verifica_numero(int inicio, int fim)
+{
+  int numero;
+  char buffer[50];
+  int valido = 0;
+
+  do
+  {
+    printf("Digite um numero entre %d e %d: ", inicio, fim);
+    fgets(buffer, 50, stdin);
+
+    if (sscanf(buffer, "%d", &numero) != 1)
+    {
+      printf("Opcao invalida! Digite um numero entre %d e %d.\n", inicio, fim);
+      continue;
+    }
+
+    if (numero < inicio || numero > fim)
+    {
+      printf("Opcao invalida! Digite um numero entre %d e %d.\n", inicio, fim);
+      continue;
+    }
+
+    valido = 1;
+
+  } while (!valido);
+
+  return numero;
+}
