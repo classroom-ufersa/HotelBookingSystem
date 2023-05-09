@@ -147,24 +147,43 @@ void escreve_lista(Hospede *h)
 Hospede *ler_lista(Hospede *h, Quarto **q)
 {
     int index;
-    Quarto *quarto;
-    Hospede *hAux;
-    Hospede *head = h;
-    Hospede *tail = h;
+    Hospede *head = NULL;
+    Hospede *tail = NULL;
     FILE *arq;
+
     arq = fopen("../dados/ListaReservas.txt", "r");
     if (arq == NULL)
     {
         printf("Nao foi possivel abrir o arquivo de quartos cadastrados.\n");
         exit(1);
     }
-    
+
+    fseek(arq, 0, SEEK_END);
+    long size = ftell(arq);
+    if (size == 0)
+    {
+        fclose(arq);
+        return h;
+    }
+    fseek(arq, 0, SEEK_SET);
+
     while (!(feof(arq)))
     {
-        hAux = (Hospede *)malloc(sizeof(Hospede));
-        quarto = (Quarto *)malloc(sizeof(Quarto));
-        hAux->quarto = quarto;
+        Hospede *hAux = (Hospede *)malloc(sizeof(Hospede));
+        if (hAux == NULL)
+        {
+            printf("\n\tErro na alocação de memoria!\n");
+            exit(1);
+        }
+        Quarto *quarto = (Quarto *)malloc(sizeof(Quarto));
+        if (quarto == NULL)
+        {
+            printf("\n\tErro na alocação de memoria!\n");
+            exit(1);
+        }
+
         fscanf(arq, "%s\n%d\n%d\n%f\n%d\n", hAux->nome, &hAux->quantidade, &hAux->estadia, &hAux->documento, &index);
+        hAux->quarto = quarto;
         hAux->quarto = q[index - 1];
         hAux->prox = NULL;
 
@@ -179,7 +198,7 @@ Hospede *ler_lista(Hospede *h, Quarto **q)
             tail = hAux;
         }
     }
-    
+
     fclose(arq);
     return head;
 }
