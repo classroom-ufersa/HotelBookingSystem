@@ -248,7 +248,7 @@ Hospede *editar_reserva(Hospede *h, Quarto **q)
         quantidade = aux->quantidade;
         h = exclui_reserva(h, numero);
         printf("\n\tTudo certo, agora digite o novo numero do documento: ");
-        scanf("%d", &documento);
+        scanf("%f", &documento);
         h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
         escreve_lista(h);
         return h;
