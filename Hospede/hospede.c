@@ -79,7 +79,7 @@ void consulta_quantitativo(Hospede *h)
     {
         quantidade += hAux->quantidade;
     }
-    printf("\tHa %d pessoas atualmente hospedadas no hotel.\n", quantidade);
+    printf("\n\tHa %d pessoas atualmente hospedadas no hotel.\n\n", quantidade);
     free(hAux);
 }
 

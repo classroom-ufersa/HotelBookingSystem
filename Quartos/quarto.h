@@ -13,3 +13,7 @@ char *transforma_nome(char *nome);
 void exibir_quartos_disponiveis(Quarto **q);
 
 void exibir_quartos_ocupados(Quarto **q);
+
+void LimpaBuffer(void);
+
+int LeInteiro(void);

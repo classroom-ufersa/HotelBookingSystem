@@ -42,7 +42,7 @@ int main()
     do
     {
         printf("\tOpcoes disponiveis no programa:\n\n\t1 - Realizar reserva\n\t2 - Exluir reserva\n\t3 - Listar Reservas\n\t4 - Buscar reserva\n\t5 - Editar reserva\n\t6 - Consultar quartos disponiveis\n\t7 - Consultar quantitativo de hospedes\n\t8 - Sair\n\n\tQual opcao deseja fazer: ");
-        op = verifica_numero(1, 8);
+        op = LeInteiro();
 
         switch (op)
         {
@@ -70,12 +70,13 @@ int main()
             printf("\tReserva para o quarto %d criada com sucesso!\n", numero);
             escreve_quarto(quartos);
             escreve_lista(lista_hospedes);
+            system("cls");
             break;
 
         case 2:
             if (lista_hospedes == NULL)
             {
-                printf("\t\nNao ha reservas cadastradas!\n\n");
+                printf("\n\tNao ha reservas cadastradas!\n\n");
                 break;
             }
             printf("\n\tExcluindo reserva...\n");
@@ -88,20 +89,20 @@ int main()
         case 3:
             if (lista_hospedes == NULL)
             {
-                printf("\t\nNao ha reservas cadastradas!\n\n");
+                printf("\n\tNao ha reservas cadastradas!\n\n");
                 break;
             }
-            printf("\n\tListando reservas...\n");
+            printf("\n\tListando reservas...\n\n");
             imprime_reserva(lista_hospedes);
             break;
 
         case 4:
             if (lista_hospedes == NULL)
             {
-                printf("\t\nNao ha reservas cadastradas!\n\n");
+                printf("\n\tNao ha reservas cadastradas!\n\n");
                 break;
             }
-            printf("\n\tBuscando reservas...\n");
+            printf("\n\tBuscando reservas...\n\n");
             printf("\tDigite o numero do quarto que deseja exibir as informacoes da reserva associada a ele:\n");
             scanf("%d", &numero);
 
@@ -117,7 +118,7 @@ int main()
         case 5:
             if (lista_hospedes == NULL)
             {
-                printf("\t\nNao ha reservas cadastradas!\n\n");
+                printf("\n\tNao ha reservas cadastradas!\n\n");
                 break;
             }
             printf("\n\tEditando reserva...\n");
@@ -130,7 +131,6 @@ int main()
             break;
 
         case 7:
-            printf("\n\tConsultando quantidade de hospedes...\n");
             consulta_quantitativo(lista_hospedes);
             break;
 
