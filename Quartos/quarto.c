@@ -113,6 +113,7 @@ void exibir_quartos_ocupados(Quarto **q)
   }
 }
 
+// ta imprimindo duplamente
 int verifica_numero(int inicio, int fim)
 {
   int numero;
@@ -121,18 +122,19 @@ int verifica_numero(int inicio, int fim)
 
   do
   {
-    printf("Digite um numero entre %d e %d: ", inicio, fim);
     fgets(buffer, 50, stdin);
 
     if (sscanf(buffer, "%d", &numero) != 1)
     {
-      printf("Opcao invalida! Digite um numero entre %d e %d.\n", inicio, fim);
+      printf("\n\tOpcao invalida!\n");
+      printf("\tOpcoes disponiveis no programa:\n\n\t1 - Realizar reserva\n\t2 - Exluir reserva\n\t3 - Listar Reservas\n\t4 - Buscar reserva\n\t5 - Editar reserva\n\t6 - Consultar quartos disponiveis\n\t7 - Consultar quantitativo de hospedes\n\t8 - Sair\n\n\tQual opcao deseja fazer: ");
       continue;
     }
 
     if (numero < inicio || numero > fim)
     {
-      printf("Opcao invalida! Digite um numero entre %d e %d.\n", inicio, fim);
+      printf("\n\tOpcao invalida!\n");
+      printf("\tOpcoes disponiveis no programa:\n\n\t1 - Realizar reserva\n\t2 - Exluir reserva\n\t3 - Listar Reservas\n\t4 - Buscar reserva\n\t5 - Editar reserva\n\t6 - Consultar quartos disponiveis\n\t7 - Consultar quantitativo de hospedes\n\t8 - Sair\n\n\tQual opcao deseja fazer: ");
       continue;
     }
 

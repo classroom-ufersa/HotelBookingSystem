@@ -50,7 +50,6 @@ int main()
             exibir_quartos_disponiveis(quartos);
             printf("\tQual o numero do quarto em que deseja se hospedar? ");
             scanf("%d", &numero);
-            // como fazer melhor?
             i = verifica_quarto(quartos, numero);
             if (i == 1)
             {
@@ -103,7 +102,7 @@ int main()
                 break;
             }
             printf("\n\tBuscando reservas...\n");
-            printf("Digite o numero do quarto que deseja exibir as informacoes da reserva associada a ele:\n");
+            printf("\tDigite o numero do quarto que deseja exibir as informacoes da reserva associada a ele:\n");
             scanf("%d", &numero);
 
             resultado_busca = busca_reserva(numero, lista_hospedes);
@@ -112,7 +111,7 @@ int main()
                 printf("\tReserva nao encontrada.\n");
                 break;
             }
-            printf("Nome do responsavel: %s\nTotal de pessoas no quarto: %d\nDias hospedados: %d\nDocumento: %.0f\nNumero do quarto: %d\n\n", resultado_busca->nome, resultado_busca->quantidade, resultado_busca->estadia, resultado_busca->documento, resultado_busca->quarto->numero);
+            printf("\n\tNome do responsavel: %s\n\tTotal de pessoas no quarto: %d\n\tDias hospedados: %d\n\tDocumento: %.0f\n\tNumero do quarto: %d\n\n", resultado_busca->nome, resultado_busca->quantidade, resultado_busca->estadia, resultado_busca->documento, resultado_busca->quarto->numero);
             break;
 
         case 5:

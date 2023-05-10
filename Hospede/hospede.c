@@ -20,7 +20,6 @@ Hospede *inicializa_reserva(void)
     return NULL;
 }
 
-// Esta criando apenas um no na lista
 Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, int quantidade, float documento)
 {
 
@@ -67,7 +66,7 @@ void imprime_reserva(Hospede *h)
     Hospede *hAux;
     for (hAux = h; hAux != NULL; hAux = hAux->prox)
     {
-        printf("Nome do responsavel: %s\nTotal de pessoas no quarto: %d\nDias hospedados: %d\nDocumento: %.0f\nNumero do quarto: %d\n\n", hAux->nome, hAux->quantidade, hAux->estadia, hAux->documento, hAux->quarto->numero);
+        printf("\tNome do responsavel: %s\n\tTotal de pessoas no quarto: %d\n\tDias hospedados: %d\n\tDocumento: %.0f\n\tNumero do quarto: %d\n\n", hAux->nome, hAux->quantidade, hAux->estadia, hAux->documento, hAux->quarto->numero);
     }
     free(hAux);
 }
@@ -222,7 +221,7 @@ Hospede *editar_reserva(Hospede *h, Quarto **q)
     int op, estadia, numero, quantidade;
     float documento;
 
-    exibir_quartos_ocupados(q);
+    imprime_reserva(h);
 
     printf("\n\tDigite o numero do quarto do responsavel que deseja fazer a edicao: ");
     scanf("%d", &numero);
@@ -270,6 +269,24 @@ Hospede *editar_reserva(Hospede *h, Quarto **q)
         scanf("%f", &documento);
         h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
         escreve_lista(h);
+        return h;
+    }
+
+    else if (op == 4)
+    {
+        aux = busca_reserva(numero, h);
+        strcpy(nome, aux->nome);
+        estadia = aux->estadia;
+        quantidade = aux->quantidade;
+        documento = aux->documento;
+        strcpy(aux->quarto->disponibilidade, "DISPONIVEL");
+        h = exclui_reserva(h, numero);
+        exibir_quartos_disponiveis(q);
+        printf("\n\tTudo certo, agora digite o  numero do novo quarto que deseja se hospedar: ");
+        scanf("%d", &numero);
+        h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
+        escreve_lista(h);
+        escreve_quarto(q);
         return h;
     }
 }
