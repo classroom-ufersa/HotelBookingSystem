@@ -56,11 +56,6 @@ Hospede *cria_reserva(Hospede *h, Quarto *q, char nome[81], int estadia, int qua
     return h;
 }
 
-int destruir_reserva(Hospede *h)
-{
-    return (h == NULL);
-}
-
 void imprime_reserva(Hospede *h)
 {
     Hospede *hAux;
@@ -93,7 +88,6 @@ Hospede *busca_reserva(int numero, Hospede *h)
             return hAux;
         }
     }
-    // free(hAux);
     return NULL;
 }
 

@@ -225,6 +225,24 @@ Hospede *editar_reserva(Hospede *h, Quarto **q)
         escreve_lista(h);
         return h;
     }
+
+    else if (op == 4)
+    {
+        aux = busca_reserva(numero, h);
+        strcpy(nome, aux->nome);
+        estadia = aux->estadia;
+        quantidade = aux->quantidade;
+        documento = aux->documento;
+        strcpy(aux->quarto->disponibilidade, "DISPONIVEL");
+        h = exclui_reserva(h, numero);
+        exibir_quartos_disponiveis(q);
+        printf("\n\tTudo certo, agora digite o  numero do novo quarto que deseja se hospedar: ");
+        scanf("%d", &numero);
+        h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
+        escreve_lista(h);
+        escreve_quarto(q);
+        return h;
+    }
 }
 ```
 

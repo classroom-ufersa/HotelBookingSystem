@@ -113,6 +113,8 @@ void exibir_quartos_ocupados(Quarto **q)
   }
 }
 
+// Funções para tratamento de dados de entrada
+
 void LimpaBuffer(void)
 {
   int valorLido;
