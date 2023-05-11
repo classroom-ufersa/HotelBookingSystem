@@ -38,7 +38,6 @@ int main()
 
     printf("\t\tBem vindo ao servico de hotelaria de Lucas Emanuel e Murilo Fontes\n\n");
     int op;
-
     do
     {
         printf("\tOpcoes disponiveis no programa:\n\n\t1 - Realizar reserva\n\t2 - Exluir reserva\n\t3 - Listar Reservas\n\t4 - Buscar reserva\n\t5 - Editar reserva\n\t6 - Consultar quartos disponiveis\n\t7 - Consultar quantitativo de hospedes\n\t8 - Sair\n\n\tQual opcao deseja fazer: ");
