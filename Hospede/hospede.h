@@ -13,7 +13,7 @@ void consulta_quantitativo(Hospede *h);
 
 Hospede *busca_reserva(int numero, Hospede *h);
 
-Hospede *exclui_reserva(Hospede *h, int numero);
+Hospede *exclui_reserva(Hospede *h, Quarto ** q, int numero);
 
 void libera_reserva(Hospede *h);
 

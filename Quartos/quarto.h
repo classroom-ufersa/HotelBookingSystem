@@ -14,6 +14,8 @@ void exibir_quartos_disponiveis(Quarto **q);
 
 void exibir_quartos_ocupados(Quarto **q);
 
+void libera_quartos(Quarto **q);
+
 void LimpaBuffer(void);
 
 int LeInteiro(void);
