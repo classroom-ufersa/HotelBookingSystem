@@ -39,7 +39,7 @@ void escreve_quarto(Quarto **quartos)
 
   for (index = 0; index < MAX_QUARTOS; index++)
   {
-    fprintf(file_quartos, "%d\t%s\t%f\t%s\n", quartos[index]->numero, quartos[index]->disponibilidade, quartos[index]->preco, quartos[index]->localizacao);
+    fprintf(file_quartos, "%d\t%s\t%.2f\t%s\n", quartos[index]->numero, quartos[index]->disponibilidade, quartos[index]->preco, quartos[index]->localizacao);
   }
 
   fclose(file_quartos);
@@ -51,7 +51,7 @@ void exibir_quartos(Quarto **q)
   printf("\t----- LISTA DE QUARTOS DISPONIVEIS PARA RESERVA -----\n");
   for (i = 0; i < MAX_QUARTOS; i++)
   {
-    printf("\tN do quarto: %d\n\tDisponibilidade: %s\n\tPreco: %.0f\n\tLocalizacao: %s\n", q[i]->numero, q[i]->disponibilidade, q[i]->preco, q[i]->localizacao);
+    printf("\tN do quarto: %d\n\tDisponibilidade: %s\n\tPreco: %.2f\n\tLocalizacao: %s\n", q[i]->numero, q[i]->disponibilidade, q[i]->preco, q[i]->localizacao);
     printf("\t---------------------\n");
   }
 }
@@ -111,6 +111,15 @@ void exibir_quartos_ocupados(Quarto **q)
       printf("\t---------------------\n");
     }
   }
+}
+
+void libera_quartos(Quarto **q){
+  int i;
+  for (i = 0; i < MAX_QUARTOS; i++)
+  {
+    free(q[i]);
+  }
+  free(q);
 }
 
 // Funções para tratamento de dados de entrada

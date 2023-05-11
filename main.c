@@ -79,9 +79,10 @@ int main()
                 break;
             }
             printf("\n\tExcluindo reserva...\n");
-            printf("Digite o numero do quarto para excluir sua reserva:\n");
+            printf("\tDigite o numero do quarto para excluir sua reserva: ");
             scanf("%d", &numero);
-            lista_hospedes = exclui_reserva(lista_hospedes, numero);
+            lista_hospedes = exclui_reserva(lista_hospedes, quartos, numero);
+            system("cls");
             printf("Reserva do quarto %d excluida com sucesso! Volte sempre.\n", numero);
             break;
 
@@ -102,7 +103,7 @@ int main()
                 break;
             }
             printf("\n\tBuscando reservas...\n\n");
-            printf("\tDigite o numero do quarto que deseja exibir as informacoes da reserva associada a ele:\n");
+            printf("\tDigite o numero do quarto que deseja exibir as informacoes da reserva associada a ele: ");
             scanf("%d", &numero);
 
             resultado_busca = busca_reserva(numero, lista_hospedes);
@@ -136,6 +137,7 @@ int main()
         case 8:
             printf("\n\tObrigado por utilizar nosso programa!\n");
             libera_reserva(lista_hospedes);
+            libera_quartos(quartos);
             break;
 
         default:
