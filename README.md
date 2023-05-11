@@ -165,7 +165,86 @@ Hospede *busca_reserva(int numero, Hospede *h)
 
 ## Editar reserva:
 
-In progress.
+This function allows changes to the attributes of the list.
+
+```c
+Hospede *editar_reserva(Hospede *h, Quarto **q)
+{
+    Hospede *aux = (Hospede *)malloc(sizeof(Hospede));
+    char nome[81];
+    int op, estadia, numero, quantidade;
+    float documento;
+
+    exibir_quartos_ocupados(q);
+
+    printf("\n\tDigite o numero do quarto do responsavel que deseja fazer a edicao: ");
+    scanf("%d", &numero);
+
+    printf("\n\tO que deseja editar?\n\t\t1 - Nome\n\t\t2 - Duracao da estadia\n\t\t3 - Documento\n\t\t4 - Quarto ");
+    scanf("%d", &op);
+
+    if (op == 1)
+    {
+        aux = busca_reserva(numero, h);
+        estadia = aux->estadia;
+        documento = aux->documento;
+        quantidade = aux->quantidade;
+        h = exclui_reserva(h, numero);
+        printf("\n\tTudo certo, agora digite o novo nome do responsavel: ");
+        scanf(" %[^\n]", nome);
+        strcpy(nome, transforma_nome(nome));
+        h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
+        escreve_lista(h);
+        return h;
+    }
+
+    else if (op == 2)
+    {
+        aux = busca_reserva(numero, h);
+        strcpy(nome, aux->nome);
+        documento = aux->documento;
+        quantidade = aux->quantidade;
+        h = exclui_reserva(h, numero);
+        printf("\n\tTudo certo, agora digite a nova duracao da estadia: ");
+        scanf("%d", &estadia);
+        h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
+        escreve_lista(h);
+        return h;
+    }
+
+    else if (op == 3)
+    {
+        aux = busca_reserva(numero, h);
+        strcpy(nome, aux->nome);
+        estadia = aux->estadia;
+        quantidade = aux->quantidade;
+        h = exclui_reserva(h, numero);
+        printf("\n\tTudo certo, agora digite o novo numero do documento: ");
+        scanf("%d", &documento);
+        h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
+        escreve_lista(h);
+        return h;
+    }
+
+    else if (op == 4)
+    {
+        aux = busca_reserva(numero, h);
+        strcpy(nome, aux->nome);
+        estadia = aux->estadia;
+        quantidade = aux->quantidade;
+        documento = aux->documento;
+        strcpy(aux->quarto->disponibilidade, "DISPONIVEL");
+        h = exclui_reserva(h, numero);
+        exibir_quartos_disponiveis(q);
+        printf("\n\tTudo certo, agora digite o  numero do novo quarto que deseja se hospedar: ");
+        scanf("%d", &numero);
+        h = cria_reserva(h, q[numero - 1], nome, estadia, quantidade, documento);
+        escreve_lista(h);
+        escreve_quarto(q);
+        return h;
+    }
+}
+```
 
 ## Consultar quartos disponíveis:
 
