@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.menu {
+  height: 60vh;
+  background-color: #a18d8d;
+}
+
+.interaction {
+  background-color: #a18d8d;
+  height: 60vh;
+}
