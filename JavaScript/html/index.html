@@ -14,9 +14,9 @@
 </head>
 
 <body>
-  <div class="container-fluid pt-5 bg-success-subtle">
+  <div class="container-fluid pt-5">
     <div class="row">
-      <div class="col">
+      <div class="col-4">
         <div class="menu">
           <br>
           <ul>
@@ -35,16 +35,23 @@
       </div>
       <div class="col">
         <div class="interaction">
-          <div class="information text-center">
-            <li><strong>Quantidade de Hospedes: 0</strong></li>
-            <li><strong>Quartos disponiveis: 50</strong></li>
+          <div class="information">
+            <li>Quantidade de Hospedes: <span class="quantHospedes"></span></li>
+            <li>Quartos disponiveis: <span class="quartosDispo"></span></li>
           </div>
           <div class="makeReservations d-none"></div>
           <div class="deleteReservations d-none"></div>
           <div class="listReservations d-none"></div>
           <div class="seekReservations d-none"></div>
           <div class="editReservations d-none"></div>
-          <div class="availableRooms d-none"></div>
+          <!-- Listar quartos disponiveis -->
+          <div class="availableRooms">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
+              class="scrollspy-example-2 scrollspy" tabindex="0">
+              <ul class="roomList">
+              </ul>
+            </div>
+          </div>
           <div class="numberOfGuests d-none"></div>
         </div>
       </div>
@@ -54,6 +61,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
+  <script src="../js/quartos.js"></script>
+  <script src="../js/hospedes.js"></script>
 </body>
 
 </html>

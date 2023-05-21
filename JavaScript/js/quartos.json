@@ -1,0 +1,99 @@
+{
+  "dados": [
+    {
+      "disponibilidade": "disponivel",
+      "preco": 100,
+      "localizacao": "primeiro andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 100,
+      "localizacao": "primeiro andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 100,
+      "localizacao": "primeiro andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 100,
+      "localizacao": "primeiro andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 100,
+      "localizacao": "primeiro andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 100,
+      "localizacao": "primeiro andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 100,
+      "localizacao": "primeiro andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 100,
+      "localizacao": "primeiro andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 100,
+      "localizacao": "primeiro andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 200,
+      "localizacao": "segundo andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 200,
+      "localizacao": "segundo andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 200,
+      "localizacao": "segundo andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 200,
+      "localizacao": "segundo andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 200,
+      "localizacao": "segundo andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 200,
+      "localizacao": "segundo andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 200,
+      "localizacao": "segundo andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 200,
+      "localizacao": "segundo andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 200,
+      "localizacao": "segundo andar"
+    },
+    {
+      "disponibilidade": "disponivel",
+      "preco": 300,
+      "localizacao": "Terceiro andar"
+    }
+  ]
+}

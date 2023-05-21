@@ -3,6 +3,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: black;
+  color: white;
+}
+
 .menu {
   height: 60vh;
   background-color: #a18d8d;
@@ -41,6 +46,12 @@
 
 .availableRooms {
   height: 40vh;
+}
+
+.scrollspy {
+  height: 40vh;
+  overflow: auto;
+  position: relative;
 }
 
 .numberOfGuests {
