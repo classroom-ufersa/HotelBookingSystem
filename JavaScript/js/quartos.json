@@ -1,99 +1,124 @@
 {
   "dados": [
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 100,
-      "localizacao": "primeiro andar"
+      "localizacao": "PRIMEIRO ANDAR",
+      "numero": 1
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 100,
-      "localizacao": "primeiro andar"
+      "localizacao": "PRIMEIRO ANDAR",
+      "numero": 2
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 100,
-      "localizacao": "primeiro andar"
+      "localizacao": "PRIMEIRO ANDAR",
+      "numero": 3
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 100,
-      "localizacao": "primeiro andar"
+      "localizacao": "PRIMEIRO ANDAR",
+      "numero": 4
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 100,
-      "localizacao": "primeiro andar"
+      "localizacao": "PRIMEIRO ANDAR",
+      "numero": 5
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 100,
-      "localizacao": "primeiro andar"
+      "localizacao": "PRIMEIRO ANDAR",
+      "numero": 6
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 100,
-      "localizacao": "primeiro andar"
+      "localizacao": "PRIMEIRO ANDAR",
+      "numero": 7
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 100,
-      "localizacao": "primeiro andar"
+      "localizacao": "PRIMEIRO ANDAR",
+      "numero": 8
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 100,
-      "localizacao": "primeiro andar"
+      "localizacao": "PRIMEIRO ANDAR",
+      "numero": 9
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 200,
-      "localizacao": "segundo andar"
+      "localizacao": "SEGUNDO ANDAR",
+      "numero": 10
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 200,
-      "localizacao": "segundo andar"
+      "localizacao": "SEGUNDO ANDAR",
+      "numero": 11
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 200,
-      "localizacao": "segundo andar"
+      "localizacao": "SEGUNDO ANDAR",
+      "numero": 12
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 200,
-      "localizacao": "segundo andar"
+      "localizacao": "SEGUNDO ANDAR",
+      "numero": 13
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 200,
-      "localizacao": "segundo andar"
+      "localizacao": "SEGUNDO ANDAR",
+      "numero": 14
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 200,
-      "localizacao": "segundo andar"
+      "localizacao": "SEGUNDO ANDAR",
+      "numero": 15
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 200,
-      "localizacao": "segundo andar"
+      "localizacao": "SEGUNDO ANDAR",
+      "numero": 16
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 200,
-      "localizacao": "segundo andar"
+      "localizacao": "SEGUNDO ANDAR",
+      "numero": 17
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
       "preco": 200,
-      "localizacao": "segundo andar"
+      "localizacao": "SEGUNDO ANDAR",
+      "numero": 18
     },
     {
-      "disponibilidade": "disponivel",
+      "disponibilidade": "DISPONIVEL",
+      "preco": 200,
+      "localizacao": "SEGUNDO ANDAR",
+      "numero": 19
+    },
+    {
+      "disponibilidade": "DISPONIVEL",
       "preco": 300,
-      "localizacao": "Terceiro andar"
+      "localizacao": "TERCEIRO ANDAR",
+      "numero": 20
     }
   ]
 }
