@@ -27,7 +27,7 @@
             <li onclick="">Listar reservas</li>
             <li onclick="">Buscar uma reserva</li>
             <li onclick="">Editar uma reserva</li>
-            <li onclick="showAvailableRooms()">Consultar quartos disponiveis</li>
+            <li id="qualquercoisa" onclick="showAvailableRooms()">Consultar quartos disponiveis</li>
             <li onclick="">Consultar quantitativo de hospedes</li>
             <li onclick="">Sair</li>
           </ul>
@@ -39,20 +39,34 @@
             <li>Quantidade de Hospedes: <span class="quantHospedes"></span></li>
             <li>Quartos disponiveis: <span class="quartosDispo"></span></li>
           </div>
-          <div class="makeReservations d-none"></div>
-          <div class="deleteReservations d-none"></div>
-          <div class="listReservations d-none"></div>
-          <div class="seekReservations d-none"></div>
-          <div class="editReservations d-none"></div>
+          <div id="makeReservations" class="makeReservations">
+            <label for="nameResponse">Nome do Responsavel:</label>
+            <input id="nameResponse" type="text">
+            <br>
+            <br>
+            <label for="lenghtOfStay">Duração da estadia:</label>
+            <input id="lenghtOfStay" type="text">
+            <br>
+            <br>
+            <label for="resbosibleDoc">Documento do Responsavel:</label>
+            <input id="resbosibleDoc" type="text">
+            <br>
+            <br>
+            <button onclick="showAvailableRooms()">Realizar uma reserva</button>
+          </div>
+          <div id="deleteReservations" class="deleteReservations d-none"></div>
+          <div id="listReservations" class="listReservations d-none"></div>
+          <div id="seekReservations" class="seekReservations d-none"></div>
+          <div id="editReservations" class="editReservations d-none"></div>
           <!-- Listar quartos disponiveis -->
-          <div class="availableRooms">
+          <div id="availableRooms" class="availableRooms d-none">
             <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
               class="scrollspy-example-2 scrollspy" tabindex="0">
               <ul id="roomList">
               </ul>
             </div>
           </div>
-          <div class="numberOfGuests d-none"></div>
+          <div id="numberOfGuests" class="numberOfGuests d-none"></div>
         </div>
       </div>
     </div>
