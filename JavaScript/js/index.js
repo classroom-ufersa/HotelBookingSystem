@@ -1,4 +1,3 @@
-// SELECIONANDO OS OBJETOS HTML QUE SERAM USADOS
 // ---- DIVS PRINCIPAIS
 const makeReservations = document.getElementById("makeReservations");
 const deleteReservations = document.getElementById("deleteReservations");
@@ -11,6 +10,15 @@ const numberOfGuests = document.getElementById("numberOfGuests");
 // ---- OUTROS ELEMENTOS HTML
 const roomList = document.getElementById("roomList");
 
+// ---- BUTTONS
+const btnMakeReservation = document.getElementById("sendResevation");
+
+// INPUTS OF CODE
+
+const nameResponse = document.getElementById("nameResponse");
+const duration = document.getElementById("lenghtOfStay");
+const resbosibleDoc = document.getElementById("resbosibleDoc");
+
 // OBJETOS USADOS NO CODIGO
 
 let room = {
@@ -20,41 +28,50 @@ let room = {
   number: null,
 };
 
-let guest = {
-  nameGuest: "",
-  lengthOfStay: 0,
-  docGuest: 0,
-  roomGuest: 0,
-  next: null,
-};
-
-// ------------------------------- COLOCAR A VERIFIAÇÃO PARA QUANDO JA TIVER RESERVAS FEITAS
+// ------------------------------- COLOCAR A VERIFIcAÇÃO PARA QUANDO JA TIVER RESERVAS FEITAS
 let headList = null;
 
 //FUNÇÕES SOBRE A LISTA DE HOSPEDES
 
 function createNode() {
-  return guest;
+  return {
+    nameGuest: "",
+    lengthOfStay: 0,
+    docGuest: 0,
+    roomGuest: 0,
+    next: null,
+  };
 }
 
+// falta: colocar o numero do quarto, porem para fazer isso deve-se fazer uma função que verifica se o quarto esta ocupado opu não
 function createReserve() {
   const newNode = createNode();
 
-  if (!headList) {
-    //CAPUTAR OS VALORES DOS INPUTS E COLOCAR AQUI
-    newNode.nameGuest = "";
-    newNode.lengthOfStay = 3;
-    newNode.docGuest = 12354;
-    newNode.roomGuest = 4;
+  newNode.nameGuest = nameResponse.value;
+  newNode.lengthOfStay = parseInt(duration.value);
+  newNode.docGuest = parseInt(resbosibleDoc.value);
+
+  if (!headList || newNode.nameGuest.localeCompare(headList.nameGuest) < 0) {
+    newNode.next = headList;
     headList = newNode;
   } else {
     let current = headList;
-    //fazer o while de forma que insira de maneira ordenada.
+    while (
+      current.next &&
+      newNode.nameGuest.localeCompare(current.next.nameGuest) > 0
+    ) {
+      current = current.next;
+    }
+
+    newNode.next = current.next;
+    current.next = newNode;
   }
+
+  console.log(headList);
 }
 
 // FUNÇÕES SOBRE OS QUARTOS DO HOTEL
-
+//transformar essa função assicrona em uma fução sincrona
 function captureRooms() {
   return fetch("http://127.0.0.1:5500/JavaScript/js/quartos.json")
     .then((response) => response.json())
@@ -80,4 +97,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("clcik", () => {
   showAvailableRooms();
+});
+
+btnMakeReservation.addEventListener("click", (event) => {
+  event.preventDefault();
+  createReserve();
 });

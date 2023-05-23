@@ -39,27 +39,29 @@
             <li>Quantidade de Hospedes: <span class="quantHospedes"></span></li>
             <li>Quartos disponiveis: <span class="quartosDispo"></span></li>
           </div>
-          <div id="makeReservations" class="makeReservations d-none">
-            <label for="nameResponse">Nome do Responsavel:</label>
-            <input id="nameResponse" type="text">
-            <br>
-            <br>
-            <label for="lenghtOfStay">Duração da estadia:</label>
-            <input id="lenghtOfStay" type="text">
-            <br>
-            <br>
-            <label for="resbosibleDoc">Documento do Responsavel:</label>
-            <input id="resbosibleDoc" type="text">
-            <br>
-            <br>
-            <button onclick="">Realizar uma reserva</button>
+          <div id="makeReservations" class="makeReservations">
+            <form action="">
+              <label for="nameResponse">Nome do Responsavel:</label>
+              <input id="nameResponse" type="text">
+              <br>
+              <br>
+              <label for="lenghtOfStay">Duração da estadia:</label>
+              <input id="lenghtOfStay" type="text">
+              <br>
+              <br>
+              <label for="resbosibleDoc">Documento do Responsavel:</label>
+              <input id="resbosibleDoc" type="text">
+              <br>
+              <br>
+              <button id="sendResevation" type="submit">Realizar uma reserva</button>
+            </form>
           </div>
           <div id="deleteReservations" class="deleteReservations d-none"></div>
           <div id="listReservations" class="listReservations d-none"></div>
           <div id="seekReservations" class="seekReservations d-none"></div>
           <div id="editReservations" class="editReservations d-none"></div>
           <!-- Listar quartos disponiveis -->
-          <div id="availableRooms" class="availableRooms ">
+          <div id="availableRooms" class="availableRooms d-none">
             <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
               class="scrollspy-example-2 scrollspy" tabindex="0">
               <ul id="roomList">
