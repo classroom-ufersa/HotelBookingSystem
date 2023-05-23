@@ -39,7 +39,7 @@
             <li>Quantidade de Hospedes: <span class="quantHospedes"></span></li>
             <li>Quartos disponiveis: <span class="quartosDispo"></span></li>
           </div>
-          <div id="makeReservations" class="makeReservations">
+          <div id="makeReservations" class="makeReservations d-none">
             <label for="nameResponse">Nome do Responsavel:</label>
             <input id="nameResponse" type="text">
             <br>
@@ -52,14 +52,14 @@
             <input id="resbosibleDoc" type="text">
             <br>
             <br>
-            <button onclick="showAvailableRooms()">Realizar uma reserva</button>
+            <button onclick="">Realizar uma reserva</button>
           </div>
           <div id="deleteReservations" class="deleteReservations d-none"></div>
           <div id="listReservations" class="listReservations d-none"></div>
           <div id="seekReservations" class="seekReservations d-none"></div>
           <div id="editReservations" class="editReservations d-none"></div>
           <!-- Listar quartos disponiveis -->
-          <div id="availableRooms" class="availableRooms d-none">
+          <div id="availableRooms" class="availableRooms ">
             <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
               class="scrollspy-example-2 scrollspy" tabindex="0">
               <ul id="roomList">
@@ -76,9 +76,7 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
   <!-- Funções dos quartos -->
-  <script src="../js/quartos.js"></script>
-  <!-- Funções da lista/hospedes -->
-  <script src="../js/hospedes.js"></script>
+  <script src="../js/index.js"></script>
 </body>
 
 </html>
