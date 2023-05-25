@@ -24,36 +24,34 @@ body {
   height: 20vh;
 }
 
-.makeReservations {
+.opcao {
+  display: none;
   height: 40vh;
+}
+
+/* .makeReservations {
 }
 
 .deleteReservations {
-  height: 40vh;
 }
 
 .listReservations {
-  height: 40vh;
 }
 
 .seekReservations {
-  height: 40vh;
 }
 
 .editReservations {
-  height: 40vh;
 }
 
 .availableRooms {
-  height: 40vh;
 }
+
+.numberOfGuests {
+} */
 
 .scrollspy {
   height: 40vh;
   overflow: auto;
   position: relative;
-}
-
-.numberOfGuests {
-  height: 40vh;
 }

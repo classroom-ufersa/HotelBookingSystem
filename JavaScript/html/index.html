@@ -22,13 +22,13 @@
           <ul>
             <br>
             <p class="h3 text-center">MENU</p>
-            <li onclick="">Realizar uma reserva</li>
-            <li onclick="">Excluir uma reserva</li>
-            <li onclick="">Listar reservas</li>
-            <li onclick="">Buscar uma reserva</li>
-            <li onclick="">Editar uma reserva</li>
-            <li id="qualquercoisa" onclick="showAvailableRooms()">Consultar quartos disponiveis</li>
-            <li onclick="">Consultar quantitativo de hospedes</li>
+            <li id="realizarReserva">Realizar uma reserva</li>
+            <li id="excluirReserva">Excluir uma reserva</li>
+            <li id="listarReservas">Listar reservas</li>
+            <li id="buscarReserva">Buscar uma reserva</li>
+            <li id="editarReserva">Editar uma reserva</li>
+            <li id="mostrarQuartos">Consultar quartos disponiveis</li>
+            <li id="quantitativoHospedes">Consultar quantitativo de hospedes</li>
             <li onclick="">Sair</li>
           </ul>
         </div>
@@ -39,7 +39,7 @@
             <li>Quantidade de Hospedes: <span class="quantHospedes"></span></li>
             <li>Quartos disponiveis: <span class="quartosDispo"></span></li>
           </div>
-          <div id="makeReservations" class="makeReservations">
+          <div id="makeReservations" class="makeReservations opcao">
             <form action="">
               <label for="nameResponse">Nome do Responsavel:</label>
               <input id="nameResponse" type="text">
@@ -56,19 +56,28 @@
               <button id="sendResevation" type="submit">Realizar uma reserva</button>
             </form>
           </div>
-          <div id="deleteReservations" class="deleteReservations d-none"></div>
-          <div id="listReservations" class="listReservations d-none"></div>
-          <div id="seekReservations" class="seekReservations d-none"></div>
-          <div id="editReservations" class="editReservations d-none"></div>
-          <!-- Listar quartos disponiveis -->
-          <div id="availableRooms" class="availableRooms d-none">
+          <div id="deleteReservations" class="deleteReservations opcao"></div>
+          <div id="listReservations" class="listReservations opcao"></div>
+          <div id="seekReservations" class="seekReservations opcao"></div>
+          <div id="editReservations" class="editReservations opcao"></div>
+          <div id="availableRooms" class="availableRooms  opcao">
             <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
               class="scrollspy-example-2 scrollspy" tabindex="0">
               <ul id="roomList">
               </ul>
             </div>
           </div>
-          <div id="numberOfGuests" class="numberOfGuests d-none"></div>
+          <div id="numberOfGuests" class="numberOfGuests opcao"></div>
+          <div id="checkRoom" class="checkRoom opcao">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
+              class="scrollspy-example-2 scrollspy" tabindex="0">
+              <ul id="roomList2">
+              </ul>
+              <label for="checkRoom">Informe o quarto que deseja se hospedar:</label>
+              <input id="checkRoom" type="text">
+              <button onclick="">Começar cadastro</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
