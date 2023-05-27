@@ -42,6 +42,19 @@ let room = {
 
 let headList = null;
 
+// FUNÇÕES SOBRE A INTERFACE DO PROJETO
+
+function hideDivs() {
+  makeReservations.style.display = "none";
+  deleteReservations.style.display = "none";
+  listReservations.style.display = "none";
+  seekReservations.style.display = "none";
+  editReservations.style.display = "none";
+  availableRooms.style.display = "none";
+  numberOfGuests.style.display = "none";
+  checkRoom.style.display = "none";
+}
+
 //FUNÇÕES SOBRE A LISTA DE HOSPEDES
 
 function createNode() {
@@ -114,69 +127,33 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 realizarReserva.addEventListener("click", () => {
-  makeReservations.style.display = "none";
-  deleteReservations.style.display = "none";
-  listReservations.style.display = "none";
-  seekReservations.style.display = "none";
-  editReservations.style.display = "none";
-  availableRooms.style.display = "none";
-  numberOfGuests.style.display = "none";
+  hideDivs();
   verificationRoom();
 });
 excluirReserva.addEventListener("click", () => {
-  makeReservations.style.display = "none";
+  hideDivs();
   deleteReservations.style.display = "block";
-  listReservations.style.display = "none";
-  seekReservations.style.display = "none";
-  editReservations.style.display = "none";
-  numberOfGuests.style.display = "none";
-  availableRooms.style.display = "none";
 });
 listarReservas.addEventListener("click", () => {
-  makeReservations.style.display = "none";
-  deleteReservations.style.display = "none";
+  hideDivs();
   listReservations.style.display = "block";
-  seekReservations.style.display = "none";
-  editReservations.style.display = "none";
-  numberOfGuests.style.display = "none";
-  availableRooms.style.display = "none";
 });
 buscarReserva.addEventListener("click", () => {
-  makeReservations.style.display = "none";
-  deleteReservations.style.display = "none";
-  listReservations.style.display = "none";
+  hideDivs();
   seekReservations.style.display = "block";
-  editReservations.style.display = "none";
-  numberOfGuests.style.display = "none";
-  availableRooms.style.display = "none";
 });
 editarReserva.addEventListener("click", () => {
-  makeReservations.style.display = "none";
-  deleteReservations.style.display = "none";
-  listReservations.style.display = "none";
-  seekReservations.style.display = "none";
+  hideDivs();
   editReservations.style.display = "block";
-  numberOfGuests.style.display = "none";
-  availableRooms.style.display = "none";
 });
 mostrarQuartos.addEventListener("click", () => {
-  makeReservations.style.display = "none";
-  deleteReservations.style.display = "none";
-  listReservations.style.display = "none";
-  seekReservations.style.display = "none";
-  editReservations.style.display = "none";
-  numberOfGuests.style.display = "none";
+  hideDivs();
   availableRooms.style.display = "block";
   showAvailableRooms();
 });
 quantitativoHospedes.addEventListener("click", () => {
-  makeReservations.style.display = "none";
-  deleteReservations.style.display = "none";
-  listReservations.style.display = "none";
-  seekReservations.style.display = "none";
-  editReservations.style.display = "none";
+  hideDivs();
   numberOfGuests.style.display = "block";
-  availableRooms.style.display = "none";
 });
 
 btnMakeReservation.addEventListener("click", (event) => {

@@ -29,27 +29,6 @@ body {
   height: 40vh;
 }
 
-/* .makeReservations {
-}
-
-.deleteReservations {
-}
-
-.listReservations {
-}
-
-.seekReservations {
-}
-
-.editReservations {
-}
-
-.availableRooms {
-}
-
-.numberOfGuests {
-} */
-
 .scrollspy {
   height: 40vh;
   overflow: auto;
