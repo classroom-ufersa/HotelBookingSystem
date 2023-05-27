@@ -18,8 +18,7 @@ const mostrarQuartos = document.getElementById("mostrarQuartos");
 const quantitativoHospedes = document.getElementById("quantitativoHospedes");
 
 // ---- OUTROS ELEMENTOS HTML
-const roomList = document.getElementById("roomList");
-const checkRoomList = document.getElementById("roomList2");
+const roomList = document.getElementsByClassName("roomList");
 
 // ---- BUTTONS
 const btnMakeReservation = document.getElementById("sendResevation");
@@ -105,12 +104,12 @@ function captureRooms() {
 }
 
 function showAvailableRooms() {
-  roomList.innerHTML = ``;
-  checkRoomList.innerHTML = ``;
+  roomList[0].innerHTML = ``;
+  roomList[1].innerHTML = ``;
   for (let i = 0; i < roomVector.length; i++) {
     if (roomVector[i].disponibilidade == "DISPONIVEL") {
-      checkRoomList.innerHTML += `<li> <strong>Disponibilidade:</strong> ${roomVector[i].disponibilidade} || <strong>Preço:</strong> ${roomVector[i].preco} || <strong>Localização:</strong> ${roomVector[i].localizacao}</li>`;
-      roomList.innerHTML += `<li> <strong>Disponibilidade:</strong> ${roomVector[i].disponibilidade} || <strong>Preço:</strong> ${roomVector[i].preco} || <strong>Localização:</strong> ${roomVector[i].localizacao}</li>`;
+      roomList[0].innerHTML += `<li> <strong>Disponibilidade:</strong> ${roomVector[i].disponibilidade} || <strong>Preço:</strong> ${roomVector[i].preco} || <strong>Localização:</strong> ${roomVector[i].localizacao}</li>`;
+      roomList[1].innerHTML += `<li> <strong>Disponibilidade:</strong> ${roomVector[i].disponibilidade} || <strong>Preço:</strong> ${roomVector[i].preco} || <strong>Localização:</strong> ${roomVector[i].localizacao}</li>`;
     }
   }
 }
