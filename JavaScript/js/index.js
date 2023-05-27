@@ -22,13 +22,14 @@ const roomList = document.getElementsByClassName("roomList");
 
 // ---- BUTTONS
 const btnMakeReservation = document.getElementById("sendResevation");
+const btnStartRegisterstar = document.getElementById("startRegisterstar");
 
 // INPUTS OF CODE
 
 const inputNameResponse = document.getElementById("nameResponse");
 const inputDuration = document.getElementById("lenghtOfStay");
 const inputResbosibleDoc = document.getElementById("resbosibleDoc");
-const inputCheckRoom = document.getElementById("checkRoom");
+const inputCheckRoom = document.getElementById("inputCheckRoom");
 
 // OBJETOS E VARIAVEIS GLOBAIS
 
@@ -108,15 +109,33 @@ function showAvailableRooms() {
   roomList[1].innerHTML = ``;
   for (let i = 0; i < roomVector.length; i++) {
     if (roomVector[i].disponibilidade == "DISPONIVEL") {
-      roomList[0].innerHTML += `<li> <strong>Disponibilidade:</strong> ${roomVector[i].disponibilidade} || <strong>Preço:</strong> ${roomVector[i].preco} || <strong>Localização:</strong> ${roomVector[i].localizacao}</li>`;
-      roomList[1].innerHTML += `<li> <strong>Disponibilidade:</strong> ${roomVector[i].disponibilidade} || <strong>Preço:</strong> ${roomVector[i].preco} || <strong>Localização:</strong> ${roomVector[i].localizacao}</li>`;
+      roomList[0].innerHTML += `<li> <strong>Disponibilidade:</strong> ${roomVector[i].disponibilidade} || <strong>Preço:</strong> ${roomVector[i].preco} || <strong>Localização:</strong> ${roomVector[i].localizacao} || <strong>Numero:</strong> ${roomVector[i].numero}</li>`;
+      roomList[1].innerHTML += `<li> <strong>Disponibilidade:</strong> ${roomVector[i].disponibilidade} || <strong>Preço:</strong> ${roomVector[i].preco} || <strong>Localização:</strong> ${roomVector[i].localizacao} || <strong>Numero:</strong> ${roomVector[i].numero}</li>`;
     }
   }
 }
 
 function verificationRoom() {
-  checkRoom.style.display = "block";
-  showAvailableRooms();
+  let numberRoom = parseInt(inputCheckRoom.value) - 1;
+  inputCheckRoom.value = "";
+  if (numberRoom <= 19 && numberRoom >= 0) {
+    if (roomVector[numberRoom].disponibilidade == "OCUPADO") {
+      alert("Perdão, mas este quarto ja esta ocupado!!");
+      return;
+    }
+    hideDivs();
+    makeReservations.style.display = "block";
+    return;
+  }
+  alert("Esse quarto não existe neste hotel!!");
+}
+
+function listReservation() {
+  let current = headList;
+  while (current) {
+    console.log(current.nameGuest);
+    current = current.next;
+  }
 }
 
 // EVENTOS DISPARADOS NO CODIGO
@@ -127,7 +146,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 realizarReserva.addEventListener("click", () => {
   hideDivs();
-  verificationRoom();
+  checkRoom.style.display = "block";
+  showAvailableRooms();
 });
 excluirReserva.addEventListener("click", () => {
   hideDivs();
@@ -136,6 +156,7 @@ excluirReserva.addEventListener("click", () => {
 listarReservas.addEventListener("click", () => {
   hideDivs();
   listReservations.style.display = "block";
+  listReservation();
 });
 buscarReserva.addEventListener("click", () => {
   hideDivs();
@@ -158,4 +179,8 @@ quantitativoHospedes.addEventListener("click", () => {
 btnMakeReservation.addEventListener("click", (event) => {
   event.preventDefault();
   createReserve();
+});
+
+btnStartRegisterstar.addEventListener("click", () => {
+  verificationRoom();
 });
