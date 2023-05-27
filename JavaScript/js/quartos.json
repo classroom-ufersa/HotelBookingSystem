@@ -31,7 +31,7 @@
       "numero": 5
     },
     {
-      "disponibilidade": "DISPONIVEL",
+      "disponibilidade": "OCUPADO",
       "preco": 100,
       "localizacao": "PRIMEIRO ANDAR",
       "numero": 6
@@ -49,13 +49,13 @@
       "numero": 8
     },
     {
-      "disponibilidade": "DISPONIVEL",
+      "disponibilidade": "OCUPADO",
       "preco": 100,
       "localizacao": "PRIMEIRO ANDAR",
       "numero": 9
     },
     {
-      "disponibilidade": "DISPONIVEL",
+      "disponibilidade": "OCUPADO",
       "preco": 200,
       "localizacao": "SEGUNDO ANDAR",
       "numero": 10
@@ -67,7 +67,7 @@
       "numero": 11
     },
     {
-      "disponibilidade": "DISPONIVEL",
+      "disponibilidade": "OCUPADO",
       "preco": 200,
       "localizacao": "SEGUNDO ANDAR",
       "numero": 12
@@ -79,19 +79,19 @@
       "numero": 13
     },
     {
-      "disponibilidade": "DISPONIVEL",
+      "disponibilidade": "OCUPADO",
       "preco": 200,
       "localizacao": "SEGUNDO ANDAR",
       "numero": 14
     },
     {
-      "disponibilidade": "DISPONIVEL",
+      "disponibilidade": "OCUPADO",
       "preco": 200,
       "localizacao": "SEGUNDO ANDAR",
       "numero": 15
     },
     {
-      "disponibilidade": "DISPONIVEL",
+      "disponibilidade": "OCUPADO",
       "preco": 200,
       "localizacao": "SEGUNDO ANDAR",
       "numero": 16
@@ -103,7 +103,7 @@
       "numero": 17
     },
     {
-      "disponibilidade": "DISPONIVEL",
+      "disponibilidade": "OCUPADO",
       "preco": 200,
       "localizacao": "SEGUNDO ANDAR",
       "numero": 18

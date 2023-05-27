@@ -34,3 +34,11 @@ body {
   overflow: auto;
   position: relative;
 }
+
+.greenText {
+  color: green;
+}
+
+.redText {
+  color: red;
+}
