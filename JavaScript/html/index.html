@@ -36,28 +36,31 @@
       <div class="col">
         <div class="interaction">
           <div class="information">
-            <li>Quantidade de Hospedes: <span class="quantHospedes"></span></li>
-            <li>Quartos disponiveis: <span class="quartosDispo"></span></li>
+            <li> <strong>Quantidade de Hospedes:</strong> <span id="qntHospedes"></span></li>
+            <li> <strong>Quartos disponiveis:</strong> <span id="quartosDispo"></span></li>
           </div>
           <div id="makeReservations" class="makeReservations opcao">
             <form action="">
               <label for="nameResponse">Nome do Responsavel:</label>
               <input id="nameResponse" type="text">
               <br>
-              <br>
               <label for="lenghtOfStay">Duração da estadia:</label>
               <input id="lenghtOfStay" type="text">
               <br>
-              <br>
               <label for="resbosibleDoc">Documento do Responsavel:</label>
               <input id="resbosibleDoc" type="text">
+              <br>
+              <label for="amountPeople">Reserva para quantas pessoas: </label>
+              <input id="amountPeople" type="text">
               <br>
               <br>
               <button id="sendResevation" type="submit">Realizar uma reserva</button>
             </form>
           </div>
           <div id="deleteReservations" class="deleteReservations opcao"></div>
-          <div id="listReservations" class="listReservations opcao"></div>
+          <div id="listReservations" class="listReservations opcao">
+            <ul id="bookingList"></ul>
+          </div>
           <div id="seekReservations" class="seekReservations opcao"></div>
           <div id="editReservations" class="editReservations opcao"></div>
           <div id="allRooms" class="allRooms  opcao">
